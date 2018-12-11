@@ -7,12 +7,19 @@ import { AppComponent } from './app.component';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './Container/header/header.component';
+import { FooterComponent } from './Container/footer/footer.component';
+import { SideComponent } from './Container/side/side.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobOfferComponent
+    JobOfferComponent,
+    HeaderComponent,
+    FooterComponent,
+    SideComponent
   ],
   imports: [
     BrowserModule,
