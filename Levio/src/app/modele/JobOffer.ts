@@ -1,7 +1,11 @@
 import {Application} from './Application';
 
-class Skill {
+export class Skill {
   id: number;
+  name: string;
+  rating: number;
+  jobOffer: JobOffer;
+
 
 }
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http} from '@angular/http';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import 'rxjs/add/operator/map';
 import {JobOffer} from '../modele/JobOffer';
 
 @Injectable()
@@ -12,4 +11,20 @@ getAllJobOffer() {
   return this.http.get<JobOffer[]>('/map-web/map/joboffer/getalljoboffer');
 
 }
+addJobOffer(jobOffer) {
+    const job = JSON.stringify(jobOffer);
+  console.log(job);
+    return this.http.post<JobOffer>('/map-web/map/joboffer', jobOffer);
+
+}
+  UpdateJobOffer(jobOffer) {
+    const job = JSON.stringify(jobOffer);
+    console.log(job);
+    return this.http.put<JobOffer>('/map-web/map/joboffer', jobOffer);
+
+  }
+  getJobOffer(id) {
+    return this.http.get<JobOffer>('/map-web/map/joboffer/getalljoboffer/' + id);
+
+  }
 }
