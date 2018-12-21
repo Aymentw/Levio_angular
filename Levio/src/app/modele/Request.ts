@@ -1,7 +1,7 @@
 export class Request {
   id: number;
   resourceType: string;
-  project: string;
+  context: string;
   deliveryDate: Date;
   status: number;
 }

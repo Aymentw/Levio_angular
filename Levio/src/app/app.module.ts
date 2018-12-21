@@ -18,6 +18,7 @@ import {NotifierModule} from 'angular-notifier';
 import { ApplicationPipe } from './filters/application.pipe';
 import {FilterPipeModule} from 'ngx-filter-pipe';
 import { ApplicationBackComponent } from './Home/job-offer/application-back/application-back.component';
+import { RequestComponent } from './Home/request/request.component';
 
 
 
@@ -29,7 +30,8 @@ import { ApplicationBackComponent } from './Home/job-offer/application-back/appl
     FooterComponent,
     SideComponent,
     ApplicationPipe,
-    ApplicationBackComponent
+    ApplicationBackComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
