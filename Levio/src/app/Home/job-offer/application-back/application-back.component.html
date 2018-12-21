@@ -1,15 +1,15 @@
 <div class="profile" style="margin-top: 50px">
-  <div class="row gutter-sm">
+  <div *ngIf="application" class="row gutter-sm">
     <div class="col-md-4 col-sm-5">
       <div class="p-about m-b-20">
         <div class="pa-padding">
           <div class="pa-avatar">
-            <img src="../../../../assets/img/avatars/{{application.ressource.photo}}" alt="" width="100" height="100">
+            <img src="../../../../assets/img/avatars/{{application.ressource?.photo}}" alt="" width="100" height="100">
           </div>
-          <div class="pa-name">{{application.ressource.first_name}} {{application.ressource.last_name}}
+          <div class="pa-name">{{application.ressource?.first_name}} {{application.ressource?.last_name}}
             <i class="zmdi zmdi-check-circle text-success m-l-5"></i>
           </div>
-          <div class="pa-text">{{application.ressource.sector}}</div>
+          <div class="pa-text">{{application.ressource?.sector}}</div>
 
           <button type="button" class="btn btn-primary m-r-10">
             <i class="zmdi zmdi-email"></i> Send email</button>
@@ -36,7 +36,7 @@
       <div class="p-skills m-b-20 m-sm-0">
         <h4 class="m-y-0">Current progress</h4>
         <hr>
-        <div *ngFor="let s of application.ressource.skills">
+        <div *ngFor="let s of application.ressource?.skills">
         <div class="clearfix m-b-5">
           <small class="pull-left">{{s.name}}</small>
           <small class="pull-right">{{s.rating}}%</small>
@@ -61,7 +61,7 @@
           <div class="pii-icon">
             <i class="zmdi zmdi-email"></i>
           </div>
-          <div class="pii-value">{{application.ressource.email}}</div>
+          <div class="pii-value">{{application.ressource?.email}}</div>
         </div>
         <div class="pi-item">
           <div class="pii-icon">
@@ -96,13 +96,15 @@
       <div class="p-content">
         <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
           <li class="active">
-            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="false">Job Offer <span class="badge badge-primary m-l-5">7</span></a>
+            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="false" (click)="accord(1)">Job Offer
+            </a>
+          </li>
+          <li>
+            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="false" (click)="accord(2)">Tests <span class="badge badge-primary m-l-5" >2</span></a>
           </li>
           <li class="">
-            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="false">History <span class="badge badge-primary m-l-5">2</span></a>
-          </li>
-          <li class="">
-            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="true">Notes</a>
+            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="true" (click)="accord(3)" (click)="a=false">Interviews<span *ngIf="notif(application)&&a" class="badge badge-primary m-l-5" >1</span>
+            </a>
           </li>
           <li class="pull-sm-right hidden-xs">
             <a href="#" data-toggle="tab" role="tab">
@@ -115,51 +117,14 @@
             </a>
           </li>
         </ul>
-        <div class="tab-content">
-         <div>
-           <h1 style="text-align: center">Job Offer</h1>
-           <hr>
-           <div class="row">
-             <div style="margin-top: 50px">
-               <div style="height: 50px;margin-bottom: 10px;">
-             <div class="col-md-offset-1 col-md-3"> <span style="font-size: large ; font-weight: bold" >Function :</span></div>
-           <div class=" col-md-8"><span style="font-size: large">{{application.jobOffer.function}}</span></div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-             <div class="col-md-offset-1 col-md-3" > <span style="font-size: large ; font-weight: bold" >Mission :</span></div>
-             <div class="col-md-7 col-md-offset-1" style="margin-left: 0%"><p style="font-size: 12px;text-align: justify">{{application.jobOffer.mission}}</p></div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-                 <div class="col-md-offset-1 col-md-3"> <span style="font-size: large ; font-weight: bold" >Function :</span></div>
-                 <div class=" col-md-8"><span style="font-size: large">{{application.jobOffer.function}}</span></div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-                 <div class="col-md-offset-1 col-md-3" > <span style="font-size: large ; font-weight: bold" >Required profile :</span></div>
-                 <div class="col-md-7 col-md-offset-1" style="margin-left: 0%"><p style="font-size: 12px;text-align: justify">{{application.jobOffer.required_profile}}</p></div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-                 <div class="col-md-offset-1 col-md-3" > <span style="font-size: large ; font-weight: bold" >Required skills :</span></div>
-                 <div class="col-md-7 col-md-offset-1" style="margin-left: 0%">
-                 <ul *ngFor="let s of application.jobOffer.listSkills">
-                   <li>{{s.name}}</li>
-                 </ul>
-                 </div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-                 <div class="col-md-offset-1 col-md-3" > <span style="font-size: large ; font-weight: bold" >beginning date :</span></div>
-                 <div class="col-md-7 col-md-offset-1" style="margin-left: 0%"><p style="font-size: 12px;text-align: justify">{{application.jobOffer.beginning}}</p></div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-                 <div class="col-md-offset-1 col-md-3" > <span style="font-size: large ; font-weight: bold" >Experience :</span></div>
-                 <div class="col-md-7 col-md-offset-1" style="margin-left: 0%"><p style="font-size: 12px;text-align: justify">{{application.jobOffer.experience}}</p></div>
-               </div>
-               <div style="height: 50px;margin-bottom: 10px;">
-                 <div class="col-md-offset-1 col-md-3" > <span style="font-size: large ; font-weight: bold" >Nomber of posts :</span></div>
-                 <div class="col-md-7 col-md-offset-1" style="margin-left: 0%"><p style="font-size: 12px;text-align: justify">{{application.jobOffer.nbPoste}}</p></div>
-               </div>
-             </div>
-           </div>
-         </div>
+        <div *ngIf="classTab==1">
+          <app-job-offer-details [JOffer]="application.jobOffer"></app-job-offer-details>
+        </div>
+        <div *ngIf="classTab==2">
+          <app-test></app-test>
+        </div>
+        <div *ngIf="classTab==3">
+          <app-interviews [interviews]="application.listInterview" [idApp]="application.id" [state]="application.state"></app-interviews>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,13 @@ import {NotifierModule} from 'angular-notifier';
 import { ApplicationPipe } from './filters/application.pipe';
 import {FilterPipeModule} from 'ngx-filter-pipe';
 import { ApplicationBackComponent } from './Home/job-offer/application-back/application-back.component';
+import { JobOfferDetailsComponent } from './Home/job-offer/application-back/job-offer-details/job-offer-details.component';
+import { TestComponent } from './Home/job-offer/application-back/test/test.component';
+import {TabModule} from 'angular-tabs-component';
+import {MatTabsModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { InterviewsComponent } from './Home/job-offer/application-back/interviews/interviews.component';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
 
 
@@ -29,7 +37,10 @@ import { ApplicationBackComponent } from './Home/job-offer/application-back/appl
     FooterComponent,
     SideComponent,
     ApplicationPipe,
-    ApplicationBackComponent
+    ApplicationBackComponent,
+    JobOfferDetailsComponent,
+    TestComponent,
+    InterviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +52,12 @@ import { ApplicationBackComponent } from './Home/job-offer/application-back/appl
     AngularMultiSelectModule,
     NgMultiSelectDropDownModule.forRoot(),
     NotifierModule,
-    FilterPipeModule
+    FilterPipeModule,
+    MatTabsModule,
+    BrowserAnimationsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+
 
   ],
   providers: [],

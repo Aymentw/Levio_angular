@@ -5,9 +5,14 @@ export class Interview {
   dateInterview: Date;
   typeInterview: TypeInterview;
   application: Application;
+  stateInterview: StateInterview;
 
 }
-enum TypeInterview {
-  interview, InterviewTech
+export enum TypeInterview {
+  interview= 'interview', InterviewTech= 'InterviewTech'
+
+}
+export enum StateInterview {
+  Request= 'Request', Accepted= 'Accepted', notAccepted= 'notAccepted'
 
 }
