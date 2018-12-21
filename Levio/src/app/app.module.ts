@@ -26,6 +26,7 @@ import {MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InterviewsComponent } from './Home/job-offer/application-back/interviews/interviews.component';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import { RequestComponent } from './Home/request/request.component';
 
 
 
@@ -41,6 +42,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
     JobOfferDetailsComponent,
     TestComponent,
     InterviewsComponent
+    RequestComponent
   ],
   imports: [
     BrowserModule,
