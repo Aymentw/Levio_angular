@@ -100,10 +100,14 @@
             </a>
           </li>
           <li>
-            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="false" (click)="accord(2)">Tests <span class="badge badge-primary m-l-5" >2</span></a>
+            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="false" (click)="accord(2)" (click)="b=false">Tests <span *ngIf="notifTest(application)&&b" class="badge badge-primary m-l-5" >1</span></a>
           </li>
           <li class="">
             <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="true" (click)="accord(3)" (click)="a=false">Interviews<span *ngIf="notif(application)&&a" class="badge badge-primary m-l-5" >1</span>
+            </a>
+          </li>
+          <li class="">
+            <a href="#tab-timeline" data-toggle="tab" role="tab" aria-expanded="true" (click)="accord(4)" >Folder<span  class="badge badge-primary m-l-5" >1</span>
             </a>
           </li>
           <li class="pull-sm-right hidden-xs">
@@ -121,10 +125,13 @@
           <app-job-offer-details [JOffer]="application.jobOffer"></app-job-offer-details>
         </div>
         <div *ngIf="classTab==2">
-          <app-test></app-test>
+          <app-test [listTest]="application.listTest" [idApplication]="application.id" [state]="application.state"></app-test>
         </div>
         <div *ngIf="classTab==3">
           <app-interviews [interviews]="application.listInterview" [idApp]="application.id" [state]="application.state"></app-interviews>
+        </div>
+        <div *ngIf="classTab==4">
+         <app-folder [application]="application"></app-folder>
         </div>
       </div>
     </div>

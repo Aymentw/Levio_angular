@@ -18,11 +18,11 @@ export class RequestComponent implements OnInit {
     return this.httpClient.get<Request[]>('/map-web/map/User/getAllRequests').map(result => result as Request[]);
   }
   ngOnInit() {
-    this.getAllRequests().subscribe((result) => {
-      for (const request in result) {
-        this.listRequests.push([request, result[request]]);
+   // this.getAllRequests().subscribe((result) => {
+     // for (const request in result) {
+       // this.listRequests.push([request, result[request]]);
       }
-    });
-  }
+    // });
+  // }
 
 }

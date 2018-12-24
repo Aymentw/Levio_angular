@@ -12,14 +12,10 @@ getAllJobOffer() {
 
 }
 addJobOffer(jobOffer) {
-    const job = JSON.stringify(jobOffer);
-  console.log(job);
     return this.http.post<JobOffer>('/map-web/map/joboffer', jobOffer);
 
 }
   UpdateJobOffer(jobOffer) {
-    const job = JSON.stringify(jobOffer);
-    console.log(job);
     return this.http.put<JobOffer>('/map-web/map/joboffer', jobOffer);
 
   }

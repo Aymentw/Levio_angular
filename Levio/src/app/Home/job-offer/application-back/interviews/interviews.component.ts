@@ -51,6 +51,7 @@ interviews: Interview[] = [];
     if (this.registerForm.invalid) {
       console.log('invalid');
     } else {
+      this.interviewadd.stateInterview = StateInterview.Request;
       if (this.interviews.length === 0) {
         this.interviewadd.typeInterview = TypeInterview.interview;
         this.appService.setStateApplication(this.idApp, 'interview').subscribe(res => console.log(res));

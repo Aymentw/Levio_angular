@@ -22,11 +22,13 @@ import { ApplicationBackComponent } from './Home/job-offer/application-back/appl
 import { JobOfferDetailsComponent } from './Home/job-offer/application-back/job-offer-details/job-offer-details.component';
 import { TestComponent } from './Home/job-offer/application-back/test/test.component';
 import {TabModule} from 'angular-tabs-component';
-import {MatTabsModule} from '@angular/material';
+import {MatCheckboxModule, MatRadioModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { InterviewsComponent } from './Home/job-offer/application-back/interviews/interviews.component';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import { RequestComponent } from './Home/request/request.component';
+import { FolderComponent } from './Home/job-offer/application-back/folder/folder.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 
 
@@ -41,8 +43,9 @@ import { RequestComponent } from './Home/request/request.component';
     ApplicationBackComponent,
     JobOfferDetailsComponent,
     TestComponent,
-    InterviewsComponent
-    RequestComponent
+    InterviewsComponent,
+    RequestComponent,
+    FolderComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,9 @@ import { RequestComponent } from './Home/request/request.component';
     BrowserAnimationsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    PdfViewerModule
 
 
   ],
