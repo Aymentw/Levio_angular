@@ -40,6 +40,22 @@
     float: none !important
   }
 }
+.container {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+#input-form {
+  position: absolute;
+  z-index: 1;}
+ #input {
+    position: absolute;
+    background: transparent;
+    border: 1px solid red;
+
+}
+
 .p-a-20 {
   padding: 20px !important
 }
@@ -854,4 +870,12 @@
 .btn-dribbble .badge {
   background-color: #fff;
   color: #ea4c89
+}
+.clearfix:after, .clearfix:before {
+  content: " ";
+  display: table
+}
+
+.clearfix:after {
+  clear: both
 }

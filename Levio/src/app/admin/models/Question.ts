@@ -2,7 +2,7 @@ import {Test} from './Test';
 
 export class Question {
   id: number;
-  Subject: string;
+  subject: string;
   choice1: string;
   choice2: string;
   choice3: string;

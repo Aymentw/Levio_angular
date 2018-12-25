@@ -1,1 +1,4 @@
-<input (click)="getAllRequests()">
+<div *ngFor="let request of listRequests">
+  {{request.id}}
+</div>
+<div>{{listRequests | json}}</div>

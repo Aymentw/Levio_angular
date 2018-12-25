@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Interview, StateInterview, TypeInterview} from '../../../../models/Interview';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
 import {InterviewService} from '../../../../services/interview.service';
 import {ApplicationService} from '../../../../services/application.service';
-import {Interview, StateInterview, TypeInterview} from '../../../../models/Interview';
 
 @Component({
   selector: 'app-interviews',
@@ -51,6 +51,7 @@ interviews: Interview[] = [];
     if (this.registerForm.invalid) {
       console.log('invalid');
     } else {
+      this.interviewadd.stateInterview = StateInterview.Request;
       if (this.interviews.length === 0) {
         this.interviewadd.typeInterview = TypeInterview.interview;
         this.appService.setStateApplication(this.idApp, 'interview').subscribe(res => console.log(res));

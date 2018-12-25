@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {JobOffer, Skill} from '../../models/JobOffer';
 import {JobOfferService} from '../../services/job-offer.service';
 import {stringify} from 'querystring';
 import {NgxSmartModalService} from 'ngx-smart-modal';
@@ -7,8 +7,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NotifierService} from 'angular-notifier';
 import {ApplicationService} from '../../services/application.service';
 import {Application} from '../../models/Application';
-import {JobOffer, Skill} from '../../models/JobOffer';
-
 
 @Component({
   selector: 'app-job-offer',

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import 'rxjs/add/operator/map';
+import {JobOffer} from '../models/JobOffer';
 import {Application} from '../models/Application';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApplicationService {

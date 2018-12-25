@@ -20,7 +20,13 @@ export class RequestComponent implements OnInit {
   ngOnInit() {
     this.getAllRequests().subscribe((result) => {
       for (const request in result) {
-      //  this.listRequests.push([request, result[request]]);
+        const r = new Request();
+        r.id = request['id'];
+        r.deliveryDate = request['deliveryDate'];
+        r.context = request['context'];
+        r.resourceType = request['resourceType'];
+        r.status = request['status'];
+        this.listRequests.push(r);
       }
     });
 
