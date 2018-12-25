@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {Application} from '../models/Application';
 
 @Pipe({
   name: 'application',
