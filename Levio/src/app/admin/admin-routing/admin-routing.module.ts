@@ -9,6 +9,7 @@ import { ProjectComponent } from '../Component/project/project.component';
 import { ResourcesComponent } from '../Component/resources/resources.component';
 import { MandatsComponent } from '../Component/mandats/mandats.component';
 import { SupportComponent } from '../Component/support/support.component';
+import {RequestComponent} from '../Component/request/request.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,10 @@ import { SupportComponent } from '../Component/support/support.component';
           {
             path: 'support',
             component: SupportComponent
+          },
+          {
+            path: 'request',
+            component: RequestComponent
           }
         ]
       }
