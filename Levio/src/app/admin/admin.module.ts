@@ -31,9 +31,11 @@ import { ProjectComponent } from './Component/project/project.component';
 import { ResourcesComponent } from './Component/resources/resources.component';
 import { MandatsComponent } from './Component/mandats/mandats.component';
 import { SupportComponent } from './Component/support/support.component';
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   imports: [
+    BrowserModule,
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
