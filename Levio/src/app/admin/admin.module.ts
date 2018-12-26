@@ -18,7 +18,6 @@ import {FilterPipeModule} from 'ngx-filter-pipe';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import { ApplicationPipe } from './pipes/application.pipe';
 import {MatCheckboxModule, MatRadioModule, MatTabsModule} from '@angular/material';
-import {TabModule} from 'angular-tabs-component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ApplicationBackComponent } from './Component/job-offer/application-back/application-back.component';
 import { JobOfferDetailsComponent } from './Component/job-offer/application-back/job-offer-details/job-offer-details.component';
@@ -31,10 +30,9 @@ import { ProjectComponent } from './Component/project/project.component';
 import { ResourcesComponent } from './Component/resources/resources.component';
 import { MandatsComponent } from './Component/mandats/mandats.component';
 import { SupportComponent } from './Component/support/support.component';
-import {BrowserModule} from "@angular/platform-browser";
+import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
-
 @NgModule({
   imports: [
     BrowserModule,
