@@ -17,8 +17,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {FilterPipeModule} from 'ngx-filter-pipe';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import { ApplicationPipe } from './pipes/application.pipe';
-import {MatTabsModule} from '@angular/material';
-import {TabModule} from 'angular-tabs-component';
+import {MatCheckboxModule, MatRadioModule, MatTabsModule} from '@angular/material';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { ApplicationBackComponent } from './Component/job-offer/application-back/application-back.component';
 import { JobOfferDetailsComponent } from './Component/job-offer/application-back/job-offer-details/job-offer-details.component';
@@ -33,9 +32,13 @@ import { MandatsComponent } from './Component/mandats/mandats.component';
 import { SupportComponent } from './Component/support/support.component';
 import { ListRessourcesComponent } from './Component/resources/list-ressources/list-ressources.component';
 import { DetailsRessourceComponent } from './Component/resources/details-ressource/details-ressource.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 @NgModule({
   imports: [
+    BrowserModule,
     CommonModule,
     AdminRoutingModule,
     HttpClientModule,
@@ -49,8 +52,12 @@ import { DetailsRessourceComponent } from './Component/resources/details-ressour
     MatTabsModule,
     BrowserAnimationsModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
-   
+    OwlNativeDateTimeModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    PdfViewerModule
+
+
   ],
   declarations: [
     AdminHeaderComponent,
@@ -74,6 +81,7 @@ import { DetailsRessourceComponent } from './Component/resources/details-ressour
     SupportComponent,
     ListRessourcesComponent,
     DetailsRessourceComponent
+    FolderComponent
   ],
   exports: [AdminComponent]
 })

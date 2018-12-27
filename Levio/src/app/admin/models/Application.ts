@@ -2,6 +2,7 @@ import {JobOffer, Skill} from './JobOffer';
 import {Folder} from './Folder';
 import {Test} from './Test';
 import {Interview} from './Interview';
+import {ApplicationTest} from './ApplicationTest';
 
 class Ressource {
   id: number;
@@ -19,8 +20,8 @@ export class Application {
   id: number;
   date_app: Date;
   state: string;
-  folder: Folder[];
-  listTest: Test[];
+  folder: Folder;
+  listTest: ApplicationTest[];
   listInterview: Interview[];
   description: string;
   jobOffer: JobOffer;
