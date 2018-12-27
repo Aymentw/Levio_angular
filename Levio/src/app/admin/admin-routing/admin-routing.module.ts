@@ -10,6 +10,8 @@ import { ResourcesComponent } from '../Component/resources/resources.component';
 import { MandatsComponent } from '../Component/mandats/mandats.component';
 import { SupportComponent } from '../Component/support/support.component';
 import {RequestComponent} from '../Component/request/request.component';
+import {ListRessourcesComponent} from '../Component/resources/list-ressources/list-ressources.component';
+import {DetailsRessourceComponent} from '../Component/resources/details-ressource/details-ressource.component';
 
 @NgModule({
   imports: [
@@ -34,10 +36,23 @@ import {RequestComponent} from '../Component/request/request.component';
           {
             path: 'project',
             component: ProjectComponent
-          },  {
+          },
+          {
             path: 'resources',
-            component: ResourcesComponent
-          },  {
+            component: ResourcesComponent,
+            pathMatch : 'prefix',
+            children: [
+              {
+                path: 'listressources',
+                component:ListRessourcesComponent
+              },
+              {
+                path: 'detailsressource/:id',
+                component:DetailsRessourceComponent
+              }
+              ]
+          },
+          {
             path: 'mandats',
             component: MandatsComponent
           },  {

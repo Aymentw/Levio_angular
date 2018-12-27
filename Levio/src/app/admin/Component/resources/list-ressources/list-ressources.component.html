@@ -1,0 +1,62 @@
+<section class="content-header">
+  <h1>
+    Ressources
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Ressources</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body">
+          <table id="example1" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Contract type</th>
+              <th>Profile</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ressource of ListRessources">
+              <td>{{ressource.first_name}}</td>
+              <td>{{ressource.last_name}}</td>
+              <td>{{ressource.contract_type}}</td>
+              <td>{{ressource.profile}}</td>
+              <td><a [routerLink]=" ['../detailsressource',ressource.id]" routerLinkActive="active"><i class="fa fa-edit"></i></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<button class="btn btn-success glyphicon glyphicon-plus" (click)="ngxSmartModalService.getModal('myModal').open()"> New Project</button>
+<!--<form role="form" (ngSubmit)="addRessource(ObjectRessource)">-->
+  <!--<div class="box-body">-->
+    <!--<div class="form-group">-->
+      <!--<label for="exampleInputEmail1">Project name</label>-->
+      <!--<input type="text" class="form-control" name="name" id="exampleInputEmail1" [(ngModel)] = "ObjectRessource.first_name" placeholder="Enter email">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="box-footer">-->
+    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+  <!--</div>-->
+<!--</form>-->
+<button (click)="ngxSmartModalService.getModal('myModal').open()">Open myModal</button>
+
+
+<ngx-smart-modal #myModal identifier="myModal">
+  <h1>Title</h1>
+  <p>Some stuff...</p>
+
+  <button (click)="myModal.close()">Close</button>
+</ngx-smart-modal>

@@ -31,6 +31,8 @@ import { ProjectComponent } from './Component/project/project.component';
 import { ResourcesComponent } from './Component/resources/resources.component';
 import { MandatsComponent } from './Component/mandats/mandats.component';
 import { SupportComponent } from './Component/support/support.component';
+import { ListRessourcesComponent } from './Component/resources/list-ressources/list-ressources.component';
+import { DetailsRessourceComponent } from './Component/resources/details-ressource/details-ressource.component';
 
 @NgModule({
   imports: [
@@ -69,7 +71,9 @@ import { SupportComponent } from './Component/support/support.component';
     ProjectComponent,
     ResourcesComponent,
     MandatsComponent,
-    SupportComponent
+    SupportComponent,
+    ListRessourcesComponent,
+    DetailsRessourceComponent
   ],
   exports: [AdminComponent]
 })
