@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Project} from "../models/Project";
 import 'rxjs/add/operator/map';
 
-
 @Injectable()
 export class ProjectService {
 
@@ -14,9 +13,20 @@ export class ProjectService {
 
   public getAllProjects() {
     return this.http.get<Project[]>('/map-web/map/project/projects/');
-
   }
 
+  public deleteProject(projectId){
+    return this.http.put<Project>('/map-web/map/project/delete/'+projectId , null);
+  }
+
+  public addProject(p){
+    return this.http.post<Project>('/map-web/map/project/', p);
+  }
+
+  public updateProject(p){
+    return this.http.put<Project>('/map-web/map/project/update/', p);
+
+  }
 
 
 }
