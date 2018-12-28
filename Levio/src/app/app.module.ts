@@ -13,18 +13,24 @@ import { AdminFooterComponent } from './admin/admin-footer/admin-footer.componen
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { routing } from './app-routing/app-routing.module';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     routing,
     AdminModule,
-    NgxPaginationModule
-   
+    NgxPaginationModule,
+    RouterModule,
+    BrowserModule,
+    HttpClientModule
+
  
   ],
   providers: [],

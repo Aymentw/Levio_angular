@@ -30,6 +30,8 @@ import { ProjectComponent } from './Component/project/project.component';
 import { ResourcesComponent } from './Component/resources/resources.component';
 import { MandatsComponent } from './Component/mandats/mandats.component';
 import { SupportComponent } from './Component/support/support.component';
+import { ListRessourcesComponent } from './Component/resources/list-ressources/list-ressources.component';
+import { DetailsRessourceComponent } from './Component/resources/details-ressource/details-ressource.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
@@ -79,6 +81,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ResourcesComponent,
     MandatsComponent,
     SupportComponent,
+    ListRessourcesComponent,
+    DetailsRessourceComponent,
     FolderComponent
   ],
   exports: [AdminComponent]
