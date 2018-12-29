@@ -1,8 +1,33 @@
-<div *ngFor="let m of _mandat">
-  {{m.id}}
-  {{m.startDate}}
-  {{m.endDate}}
-  {{m.ressource.first_name}} {{m.ressource.last_name}}
-  {{m.ressource.project.name}}  
-</div>
  
+<p-table #dt [columns]="cols" [value]="_mandat" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="caption">
+    <div style="text-align: right">        
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+    </div>
+</ng-template>
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns">
+              {{col.header}}
+          </th>
+      </tr>
+  
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-mand>
+      <tr [pSelectableRow]="rowData">
+          <td >
+            {{mand.startDate}}
+          </td>
+          <td >
+            {{mand.endDate}}
+          </td>
+          <td >
+            {{mand.ressource.first_name}}{{mand.ressource.last_name}}
+          </td>
+          <td >
+            {{mand.ressource.project.name}}
+          </td>
+      </tr>
+  </ng-template>
+</p-table>

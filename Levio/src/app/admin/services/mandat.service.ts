@@ -13,7 +13,8 @@ export class MandatService {
   getAll() {
      return this.http.get<Mandat[]>('/map-web/map/mandate');
   }
+ 
   GetById(id: number) {
-    return this.http.get<any>('/map-web/map/mandate' + id);
+    return this.http.get<Mandat>('/map-web/map/mandate' + id);
   }
 }
