@@ -36,7 +36,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {NgxPaginationModule} from 'ngx-pagination';
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -57,10 +56,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatRadioModule,
     MatCheckboxModule,
     PdfViewerModule,
-    NgxPaginationModule
-
-
-  ],
+    NgxPaginationModule],
   declarations: [
     AdminHeaderComponent,
     AdminLeftSideComponent,
