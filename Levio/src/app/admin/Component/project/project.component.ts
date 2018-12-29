@@ -3,7 +3,7 @@ import {ProjectService} from "../../services/project.service";
 import {Project} from "../../models/Project";
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {HttpClient} from "@angular/common/http";
-import {NotifierService} from "angular-notifier";
+import {Client} from "../../models/Client";
 
 @Component({
   selector: 'app-project',
@@ -14,13 +14,13 @@ import {NotifierService} from "angular-notifier";
 export class ProjectComponent implements OnInit {
 
   projects: Project[] = null;
-  private readonly notifier: NotifierService;
+  clients: Client[] = null;
 
-  constructor(notifierService: NotifierService, private projectService : ProjectService, private http:HttpClient,  public ngxSmartModalService: NgxSmartModalService) {    this.notifier = notifierService;
-  }
+  constructor(private projectService : ProjectService, private http:HttpClient,  public ngxSmartModalService: NgxSmartModalService) { }
 
   ngOnInit() {
     this.projectService.getAllProjects().subscribe(data => { this.projects=data});
+    this.projectService.getClients().subscribe(res => { this.clients =res});
   }
 
   deleteProject(id){

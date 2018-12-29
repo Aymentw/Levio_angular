@@ -855,3 +855,206 @@
   background-color: #fff;
   color: #ea4c89
 }
+.profile .p-content .pc-task {
+    position: relative;
+}
+.profile .p-content .pc-task a {
+    display: block;
+    padding: 15px 30px 15px 85px;
+    text-decoration: none;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.profile .p-content .pc-task .pct-avatar {
+  left: 30px;
+  position: absolute;
+  top: 15px;
+}
+.profile .p-content .pc-task .pct-name {
+  color: #333;
+  font-weight: 700;
+  font-size: 13px;
+  overflow: hidden;
+  padding-right: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.profile .p-content .pc-task .pct-time {
+  color: #999;
+  font-size: 13px;
+  top: 14px;
+  right: 30px;
+  position: absolute;
+}
+
+.profile .p-content .pc-task .pct-avatar img {
+  border-radius: 50%;
+}
+.m-l-5 {
+  margin-left: 5px !important;
+}
+.label {
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 85%;
+  font-weight: 500;
+  padding: .2em .6em;
+}
+.label-danger {
+  background-color: #e53935;
+}
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.profile .p-content .pc-task .pct-time {
+  color: #999;
+  font-size: 13px;
+  top: 14px;
+  right: 30px;
+  position: absolute;
+}
+@media (min-width: 992px){
+.col-md-6 {
+    width: 50%;
+}}
+
+@media (min-width: 992px){
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+    float: left;
+}
+}
+
+.h5, h5 {
+  font-size: 13px;
+}
+.profile .p-content .pc-task a {
+  display: block;
+  padding: 15px 30px 15px 85px;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s
+}
+
+  .profile .p-content .pc-task a:focus, .profile .p-content .pc-task a:hover {
+      background-color: #f2f2f2
+  }
+
+.profile .p-content .pc-task .pct-avatar {
+  left: 30px;
+  position: absolute;
+  top: 15px
+}
+
+  .profile .p-content .pc-task .pct-avatar img {
+      border-radius: 50%
+  }
+
+.profile .p-content .pc-task .pct-name {
+  color: #333;
+  font-weight: 700;
+  font-size: 13px;
+  overflow: hidden;
+  padding-right: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+
+.profile .p-content .pc-task .pct-time {
+  color: #999;
+  font-size: 13px;
+  top: 14px;
+  right: 30px;
+  position: absolute
+}
+
+.profile .p-content .pc-task .pct-text {
+  color: #333;
+  font-size: 13px;
+  margin: 5px 0
+}
+
+.progress {
+box-shadow: none;
+height: 15px;
+margin-bottom: 15px
+}
+
+.progress-bar {
+box-shadow: none;
+line-height: 15px
+}
+
+.progress-lg {
+height: 20px
+}
+
+.progress-lg .progress-bar {
+line-height: 20px
+}
+
+.progress-sm {
+height: 10px
+}
+
+.progress-sm .progress-bar {
+line-height: 10px
+}
+
+.progress-xs {
+height: 5px
+}
+
+.progress-xs .progress-bar {
+line-height: 5px
+}
+.pc-task{
+  display: block !important;
+  position: relative;
+  color: black !important;
+  padding: 0px 30px 15px 85px !important;
+  ;
+  text-decoration: none !important;
+  ;
+  -webkit-transition: all .3s !important;
+  transition: all .3s !important;
+}
+.pct-name {
+  color: #333;
+  font-weight: 700;
+  font-size: 13px;
+  overflow: hidden;
+  padding-right: 50px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pct-time {
+  color: #999;
+  font-size: 13px;
+  top: 14px;
+  right: 30px;
+  position: absolute;
+}
+.pct-text {
+  color: #333;
+  font-size: 13px;
+  margin: 5px 0;
+}
+.clearfix:after, .clearfix:before {
+  content: " ";
+  display: table
+}
+
+.clearfix:after {
+  clear: both
+}

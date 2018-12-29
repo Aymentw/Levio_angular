@@ -18,6 +18,5 @@ export class ApplicationService {
   }
   setStateApplication(id, state) {
     return this.http.get<object>('/map-web/map/application/state/' + id + '/' + state).map(res => res);
-
   }
 }

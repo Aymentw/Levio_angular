@@ -36,7 +36,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {FullCalendarModule} from 'ng-fullcalendar';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -59,6 +59,7 @@ import {FullCalendarModule} from 'ng-fullcalendar';
     MatCheckboxModule,
     PdfViewerModule,
     FullCalendarModule
+    NgxPaginationModule
 
 
   ],
