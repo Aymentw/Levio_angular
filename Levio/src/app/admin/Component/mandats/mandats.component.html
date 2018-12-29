@@ -1,3 +1,8 @@
-<p>
-  mandats works!
-</p>
+<div *ngFor="let m of _mandat">
+  {{m.id}}
+  {{m.startDate}}
+  {{m.endDate}}
+  {{m.ressource.first_name}} {{m.ressource.last_name}}
+  {{m.ressource.project.name}}  
+</div>
+ 
