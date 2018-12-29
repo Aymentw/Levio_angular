@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Project} from "../models/Project";
 import 'rxjs/add/operator/map';
+import {Client} from "../models/Client";
 
 @Injectable()
 export class ProjectService {
@@ -26,6 +27,9 @@ export class ProjectService {
   public updateProject(p){
     return this.http.put<Project>('/map-web/map/project/update/', p);
 
+  }
+  public  getClients(){
+    return this.http.get<Client[]>('/map-web/map/client/clients/');
   }
 
 

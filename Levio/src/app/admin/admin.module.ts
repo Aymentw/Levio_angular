@@ -33,6 +33,7 @@ import { SupportComponent } from './Component/support/support.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+
 @NgModule({
   imports: [
     BrowserModule,
