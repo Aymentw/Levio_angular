@@ -81,8 +81,34 @@
             finishedProject
           </label>
         </div>
+        <div class="form-group">
+          <label>Start-Date</label>
+          <input type="date" class="form-control" placeholder="start date" name="start_date" [(ngModel)] = "project.start_date">
+        </div>
+        <div class="form-group">
+          <label>End-Date</label>
+          <input type="date" class="form-control" placeholder="end date" name="end_date" [(ngModel)] = "project.end_date">
+        </div>
+        <div class="form-group">
+          <label>Number of ressources (Levio)</label>
+          <input type="number" class="form-control" placeholder="number of Levio ressources" name="num_ressource_levio" [(ngModel)] = "project.num_ressource_levio">
+        </div>
+        <div class="form-group">
+          <label>Number of ressources: (client)</label>
+          <input type="number" class="form-control" placeholder="number of Client ressources" name="num_ressource_all" [(ngModel)] = "project.num_ressource_all">
+        </div>
+        <div class="form-group">
+          <label>File input</label>
+          <input type="file" name="photo" [(ngModel)] = "project.photo">
+        </div>
+        <div class="form-group">
+          <label>Client</label>
+          <select class="form-control select2" style="width: 100%;">
+            <option> - </option>
+            <option *ngFor="let c of clients" name="client" [(ngModel)] = "project.client">{{c.name}}</option>
+          </select>
+        </div>
       </div>
-      <input type="date" class="form-control" placeholder="start date" name="start_date" [(ngModel)] = "project.start_date">
 
       <div class="box-footer">
         <button type="submit" (click)="myModal.close()" class="btn btn-primary">Submit</button>
@@ -123,6 +149,33 @@
             finishedProject
           </label>
         </div>
+        <div class="form-group">
+          <label>Start-Date</label>
+          <input type="date" class="form-control" placeholder="start date" name="start_date" [(ngModel)] = "updateproject.start_date">
+        </div>
+        <div class="form-group">
+          <label>End-Date</label>
+          <input type="date" class="form-control" placeholder="end date" name="end_date" [(ngModel)] = "updateproject.end_date">
+        </div>
+        <div class="form-group">
+          <label>Number of ressources (Levio)</label>
+          <input type="number" class="form-control" placeholder="number of Levio ressources" name="num_ressource_levio" [(ngModel)] = "updateproject.num_ressource_levio">
+        </div>
+        <div class="form-group">
+          <label>Number of ressources (client)</label>
+          <input type="number" class="form-control" placeholder="number of Client ressources" name="num_ressource_all" [(ngModel)] = "updateproject.num_ressource_all">
+        </div>
+        <div class="form-group">
+          <label>File input</label>
+          <input type="file" name="photo" [(ngModel)] = "updateproject.photo">
+        </div>
+        <div class="form-group">
+          <label>Client</label>
+          <select class="form-control select2" style="width: 100%;">
+            <option> {{updateproject.client.name}} </option>
+            <option *ngFor="let c of clients">{{c.name}}</option>
+          </select>
+        </div>
       </div>
 
       <div class="box-footer">
@@ -131,3 +184,6 @@
     </form>
   </div>
 </ngx-smart-modal>
+
+
+

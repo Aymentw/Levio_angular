@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {RessourceService} from '../../../services/ressource.service';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {Ressource} from '../../../models/Ressource';
+import {HttpClient} from '@angular/common/http';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-list-ressources',
@@ -13,9 +15,14 @@ import {Ressource} from '../../../models/Ressource';
 export class ListRessourcesComponent implements OnInit {
 
 
+  selectedFile = null;
   ObjectRessource = new Ressource();
-  ListRessources:Object;
-  constructor(private ServiceRessource:RessourceService,public ngxSmartModalService: NgxSmartModalService) {
+  ListRessources: any;
+  private readonly notifier: NotifierService;
+  constructor(notifierService: NotifierService,private ServiceRessource:RessourceService,public ngxSmartModalService: NgxSmartModalService,private http:HttpClient) {
+
+    this.notifier = notifierService;
+
 
   }
 
@@ -30,6 +37,30 @@ export class ListRessourcesComponent implements OnInit {
   addRessource(ObjectRessource) {
 
     this.ServiceRessource.addRessource(ObjectRessource).subscribe(data => console.log('ok'));
+    this.notifier.show( {
+      type: 'success',
+      message: 'Ressource successfully added',
+      id: 'THAT_NOTIFICATION_ID'
+    } );
+    this.ListRessources.push(ObjectRessource);
+
+
+
+  }
+
+
+  deleteRessource(id,ressource) {
+
+    console.log(id);
+    this.ServiceRessource.deleteRessource(id).subscribe(data => console.log('ok'));
+    this.notifier.show( {
+      type: 'success',
+      message: 'Ressource successfully deleted',
+      id: 'THAT_NOTIFICATION_ID'
+    } );
+    this.ListRessources.splice(this.ListRessources.indexOf(ressource), 1);
+
+
 
   }
 
