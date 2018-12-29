@@ -44,6 +44,7 @@
     "daterangepicker": "^2.1.25",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.6.1",
+    "primeng": "^5.2.5",
     "icheck": "^1.0.2",
     "install": "^0.10.1",
     "ionicons": "^3.0.0",
