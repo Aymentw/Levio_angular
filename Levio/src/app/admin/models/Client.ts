@@ -5,4 +5,9 @@ export class Client {
   last_name: string;
   email: string;
   name: string;
+  adress: string;
+  type: clientType;
+  category: clientCategory;
 }
+export enum clientType { newClient, currentClient, finishedProject }
+export enum clientCategory { privateCat, publicCat }

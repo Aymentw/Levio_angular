@@ -35,6 +35,7 @@ import { DetailsRessourceComponent } from './Component/resources/details-ressour
 import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TableModule} from 'primeng/table';
 @NgModule({
@@ -57,6 +58,7 @@ import {TableModule} from 'primeng/table';
     MatRadioModule,
     MatCheckboxModule,
     PdfViewerModule,
+    FullCalendarModule,
     NgxPaginationModule,
     TableModule
 
