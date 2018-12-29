@@ -35,6 +35,8 @@ import { DetailsRessourceComponent } from './Component/resources/details-ressour
 import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {FullCalendarModule} from 'ng-fullcalendar';
+
 
 @NgModule({
   imports: [
@@ -55,7 +57,8 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     OwlNativeDateTimeModule,
     MatRadioModule,
     MatCheckboxModule,
-    PdfViewerModule
+    PdfViewerModule,
+    FullCalendarModule
 
 
   ],
@@ -80,7 +83,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     MandatsComponent,
     SupportComponent,
     ListRessourcesComponent,
-    DetailsRessourceComponent
+    DetailsRessourceComponent,
     FolderComponent
   ],
   exports: [AdminComponent]
