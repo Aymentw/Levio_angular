@@ -11,18 +11,26 @@ import { AdminLeftSideComponent } from './admin/admin-left-side/admin-left-side.
 import { AdminContentComponent } from './admin/admin-content/admin-content.component';
 import { AdminFooterComponent } from './admin/admin-footer/admin-footer.component';
 import { AdminControlSidebarComponent } from './admin/admin-control-sidebar/admin-control-sidebar.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { routing } from './app-routing/app-routing.module';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    
+
   ],
   imports: [
     BrowserModule,
     routing,
-    AdminModule
-   
+    AdminModule,
+    NgxPaginationModule,
+    RouterModule,
+    BrowserModule,
+    HttpClientModule
+
  
   ],
   providers: [],
