@@ -27,6 +27,7 @@ export class ApplicationBackComponent implements OnInit, OnChanges, AfterViewIni
       this.id = +params['id'];
     });
     this.service.getApplication(this.id).subscribe(res => this.application = (res));
+    console.log(this.application);
   }
 
   calculrating(rating: number) {

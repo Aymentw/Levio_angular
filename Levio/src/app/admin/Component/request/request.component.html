@@ -1,34 +1,94 @@
-<div class="container responsive">
-<fieldset>
-  <h2 style="text-align: center;font-weight: bolder;font-family: initial;padding-bottom: 20px;">Clients Requests</h2>
-  <table class="table table-hover" style="width: 1000px !important; margin-left: 80px !important; ">
+<div class="container">
+<h2 style="text-align: center;font-weight: bolder;font-family: initial;padding-bottom: 20px;">Clients Requests</h2>
+
+ <div class="table-container">
+  <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
     <thead>
     <tr>
-      <th>Logo</th>
-      <th>Client</th>
-      <th>Project</th>
-      <th>Resource Type</th>
-      <th>Delivery Date</th>
-      <th>Status</th>
-      <th>Action</th>
+      <th class="mdl-data-table__cell--non-numeric" >Logo</th>
+      <th class="mdl-data-table__cell--non-numeric">Client</th>
+      <th class="mdl-data-table__cell--non-numeric">Project</th>
+      <th class="mdl-data-table__cell--non-numeric">Resource Type</th>
+      <th class="mdl-data-table__cell--non-numeric">Delivery Date</th>
+      <th class="mdl-data-table__cell--non-numeric">Status</th>
+      <th class="mdl-data-table__cell--non-numeric" style="padding-left: 120px;">Actions</th>
+      <!-- Right aligned menu below button -->
+      <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+          for="demo-menu-lower-right">
+        <li class="mdl-menu__item" (click)="deleteTreatedRequests()">Delete Treated Requests</li>
+        <li class="mdl-menu__item" (click)="treatAllRequests()">Treat All Requests</li>
+      </ul>
     </tr>
     </thead>
-    <tbody *ngFor="let request of listRequests">
-    <tr id="{{request.id}}">
-      <td><img src="../../../../assets/img/clients/{{request.clients[0].name + '.jpg'}}" style="height: 50px; width: 50px; border-radius: 50px;"></td>
-      <td>{{request.clients[0].name}}</td>
-      <td>{{request.context}}</td>
-      <td>{{request.resourceType}}</td>
-      <td>{{request.deliveryDate}}</td>
-      <td>{{returnStatus(request)}}</td>
-      <td>
-        <button style="border: 0;" [disabled]="checkTreated" (click)="treatRequest(request)" ><i style="color: green;" class="fa fa-check-square-o"></i></button>
-        |
-        <button style="border: 0;" (click)="deleteRequest(request)"><i style="color: red;" class="fa fa-trash-o"></i></button>
+    <tbody *ngIf="listRequests.length >0">
+    <tr  *ngFor="let request of listRequests  | paginate : { itemsPerPage: 3, currentPage: p }">
+      <td></td>
+      <td class="mdl-data-table__cell--non-numeric"><img src="../../../../assets/img/clients/{{request.clients[0].name + '.jpg'}}" style="height: 50px; width: 50px; border-radius: 50px;"></td>
+      <td class="mdl-data-table__cell--non-numeric">{{request.clients[0].name}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{request.context}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{request.resourceType}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{request.deliveryDate}}</td>
+      <td class="mdl-data-table__cell--non-numeric">{{returnStatus(request)}}</td>
+      <td class="mdl-data-table__cell--non-numeric">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" [disabled]="request.status" (click)="treatRequest(request)">
+          <i class="material-icons">{{returnTreatAction(request)}}</i>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [disabled]="!request.status" (click)="deleteRequest(request)">
+        <i class="material-icons">delete_forever</i>
+      </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent msg-button" data-toggle="modal" data-target="#sendModal" (click)="getMessageDetails(request)">
+          <i class="material-icons">message</i>
+        </button>
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent profile-button">
+          <i class="material-icons">account_circle</i>
+        </button>
       </td>
     </tr>
     </tbody>
   </table>
-</fieldset>
+   <div class="container" style="width: 1000px; display: inline-grid;">
+   <pagination-controls (pageChange)="p = $event"></pagination-controls>
+   </div>
+ </div>
+  <div *ngIf="listRequests.length <= 0" style="margin-left: 340px;margin-top: 100px;"><div class="mdl-spinner mdl-js-spinner is-active"></div></div>
 </div>
 
+
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sendModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name" style="border-radius: 10px;">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Subject:</label>
+            <input type="text" class="form-control" id="subject" style="border-radius: 10px;">
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control msg-body" style="border-radius: 10px;" id="message-text" [(ngModel)]="msgBody" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary send-msg" (click)="sendMsg()">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
