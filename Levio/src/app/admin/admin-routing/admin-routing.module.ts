@@ -77,7 +77,8 @@ import {ApplicationBackComponent} from '../Component/job-offer/application-back/
           {
             path: 'request',
             component: RequestComponent
-          }
+          },
+          {path: 'ApplicationBack/:id', component: ApplicationBackComponent}
         ]
       }
     ])
