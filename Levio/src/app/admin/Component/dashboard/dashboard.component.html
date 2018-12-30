@@ -7,7 +7,7 @@
 
         <p>Resources in mandates</p>
       </div>
-      <div class="icon">
+      <div class="icon" style="top: 3px;">
         <i class="fa fa-user"></i>
       </div>
     </div>
@@ -21,7 +21,7 @@
 
         <p>Unoccupied Resources</p>
       </div>
-      <div class="icon">
+      <div class="icon" style="top: 3px;">
         <i class="fa fa-user"></i>
       </div>
     </div>
@@ -35,7 +35,7 @@
 
         <p>Admin Agents</p>
       </div>
-      <div class="icon">
+      <div class="icon" style="top: 3px;">
         <i class="fa fa-user"></i>
       </div>
     </div>
@@ -46,11 +46,11 @@
     <!-- small box -->
     <div class="small-box bg-yellow">
       <div class="inner">
-        <h3>65</h3>
+        <h3>{{numreslevio}}</h3>
 
         <p>Number of Levio employees</p>
       </div>
-      <div class="icon">
+      <div class="icon" style="top: 3px;">
         <i class="fa fa-user"></i>
       </div>
     </div>
@@ -59,37 +59,111 @@
     <!-- small box -->
     <div class="small-box bg-aqua">
       <div class="inner">
-        <h3>65</h3>
+        <h3>{{numresfreelance}}</h3>
 
         <p>Number of freelancers</p>
       </div>
-      <div class="icon">
+      <div class="icon" style="top: 3px;">
         <i class="fa fa-user"></i>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-6">
-    <div class="box box-default">
+  <div class=" col col-xl-6 col-md-6 col-sm-6">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Satisfaction Rate</h3>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <input type="text" class="knob" value="{{satisfactionRate}}" data-thickness="0.1" data-width="200" data-height="200" data-fgColor="#3c8dbc" data-readonly="true">
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      The footer of the box
+    </div>
+    <!-- box-footer -->
+  </div>
+  <!-- /.box -->
+  </div>
+  <div class=" col col-xl-6 col-md-6 col-sm-6">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">Most Common Skills</h3>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+      <canvas id="skills">{{ skills }}</canvas>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      The footer of the box
+    </div>
+    <!-- box-footer -->
+  </div>
+  <!-- /.box -->
+  </div>
+</div>
+<div class="row">
+  <div class=" col col-xl-6 col-md-6 col-sm-6">
+    <div class="box">
       <div class="box-header with-border">
-        <i class="fa fa-warning"></i>
-
-        <h3 class="box-title">Alerts</h3>
+        <h3 class="box-title">Most Profitable Projects</h3>
+        <!-- /.box-tools -->
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-        <div class="col-xs-6 col-md-3 text-center">
-          <input type="text" class="knob" value="80" data-skin="tron" data-thickness="0.2" data-width="90" data-height="90" data-fgColor="#3c8dbc" data-readonly="true">
-
-          <div class="knob-label">data-width="90"</div>
-        </div>
+        <canvas id="profitProjects">{{ profitProjects }}</canvas>
       </div>
       <!-- /.box-body -->
+      <div class="box-footer">
+        The footer of the box
+      </div>
+      <!-- box-footer -->
     </div>
     <!-- /.box -->
   </div>
-
+  <div class=" col col-xl-6 col-md-6 col-sm-6">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Most Profiable Clients</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <canvas id="profitClients">{{ profitClients }}</canvas>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        The footer of the box
+      </div>
+      <!-- box-footer -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+<div class="row">
+  <div class=" col col-xl-12 col-md-12 col-sm-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Most Profitable Projects</h3>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <canvas id="mandatesProgress">{{ mandatesProgress }}</canvas>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        The footer of the box
+      </div>
+      <!-- box-footer -->
+    </div>
+    <!-- /.box -->
+  </div>
 </div>
 <table border="1px">
   <tr *ngFor="let l of listSkills">

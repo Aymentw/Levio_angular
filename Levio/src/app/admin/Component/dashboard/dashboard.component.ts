@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
 import 'jquery-knob';
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,77 +23,48 @@ export class DashboardComponent implements OnInit {
   satisfactionRate: Object;
   listresources: Object;
   listprojects: Object;
-  listmandates: Object;
-  constructor(private dashboardService: DashboardService) { }
+  listmandates=[];
+  skillslabels=[];
+  skillsvalues=[];
+  skills= [];
+  profitProjects= [];
+  profitClients= [];
+  projectLabels=[];
+  projectValues=[];
+  clientLabels=[];
+  clientValues=[];
+  mandatesProgress=[];
+  mandateLabels=[];
+  mandateValues1=[];
+  mandateValues2=[];
+  constructor(private dashboardService: DashboardService) {
 
-  ngOnInit() {
-    $(function() {
-      $(".knob").knob({
-        /*change : function (value) {
-         //console.log("change : " + value);
-         },
-         release : function (value) {
-         console.log("release : " + value);
-         },
-         cancel : function () {
-         console.log("cancel : " + this.value);
-         },*/
-        draw: function () {
-
-          // "tron" case
-          if (this.$.data('skin') == 'tron') {
-
-            var a = this.angle(this.cv)  // Angle
-              , sa = this.startAngle          // Previous start angle
-              , sat = this.startAngle         // Start angle
-              , ea                            // Previous end angle
-              , eat = sat + a                 // End angle
-              , r = true;
-
-            this.g.lineWidth = this.lineWidth;
-
-            this.o.cursor
-            && (sat = eat - 0.3)
-            && (eat = eat + 0.3);
-
-            if (this.o.displayPrevious) {
-              ea = this.startAngle + this.angle(this.value);
-              this.o.cursor
-              && (sa = ea - 0.3)
-              && (ea = ea + 0.3);
-              this.g.beginPath();
-              this.g.strokeStyle = this.previousColor;
-              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-              this.g.stroke();
-            }
-
-            this.g.beginPath();
-            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-            this.g.stroke();
-
-            this.g.lineWidth = 2;
-            this.g.beginPath();
-            this.g.strokeStyle = this.o.fgColor;
-            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-            this.g.stroke();
-
-            return false;
-          }
-        }
-      });
-    });
     this.dashboardService.getSkills().subscribe(
       data => {
         this.listSkills = data;
+        // @ts-ignore
+        for(let x of this.listSkills) {
+          this.skillslabels.push(x[0]);
+          this.skillsvalues.push(x[1]);
+        }
       });
     this.dashboardService.getMostProfitProject().subscribe(
       data => {
         this.mostProfitProject = data;
+        // @ts-ignore
+        for(let x of this.mostProfitProject) {
+          this.projectLabels.push(x[0]);
+          this.projectValues.push(x[1]);
+        }
       });
     this.dashboardService.getMostProfitClient().subscribe(
       data => {
         this.mostProfitClient = data;
+        // @ts-ignore
+        for(let x of this.mostProfitClient) {
+          this.clientLabels.push(x[0]);
+          this.clientValues.push(x[1]);
+        }
       });
     this.dashboardService.getNumResMandates().subscribe(
       data => {
@@ -124,7 +96,9 @@ export class DashboardComponent implements OnInit {
       });
     this.dashboardService.getSatisfactionRate().subscribe(
       data => {
-        this.satisfactionRate = data;
+        if (typeof data === 'number') {
+          this.satisfactionRate = Math.round(data);
+        }
       });
     this.dashboardService.getResources().subscribe(
       data => {
@@ -136,8 +110,121 @@ export class DashboardComponent implements OnInit {
       });
     this.dashboardService.getMandates().subscribe(
       data => {
+        // @ts-ignore
         this.listmandates = data;
+        for (let i = 0; i < this.listmandates.length; i++) {
+          this.mandateLabels.push("Mandate " + this.listmandates[i]["id"] + " (" + this.listmandates[i]["project"]["name"] + ")");
+          let d1 = new Date(this.listmandates[i]["endDate"]);
+          let d2 = new Date(this.listmandates[i]["startDate"]);
+          let d3 = new Date(this.listmandates[i]["actualEndDate"]);
+          let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+          let diffDays = Math.round(Math.abs((d1.getTime() - d2.getTime()) / (oneDay)));
+          let diffDays2 = Math.round(Math.abs((d3.getTime() - d2.getTime()) / (oneDay)));
+          this.mandateValues1.push(diffDays);
+          this.mandateValues2.push(diffDays2);
+        }
       });
   }
 
+  ngOnInit() {
+
+    $('.knob').knob({
+      lineCap: 'round'
+    });
+    let ctx = document.getElementById('skills');
+    console.log(this.skillslabels);
+    console.log(this.skillsvalues);
+    this.skills = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: this.skillslabels,
+        datasets: [{
+          data: this.skillsvalues,
+          backgroundColor: ['#3366CCCC', '#DC3912CC', '#FF9900CC', '#109618CC', '#990099CC', '#3B3EACCC', '#0099C6CC', '#DD4477CC', '#66AA00CC', '#B82E2ECC', '#316395CC', '#994499CC', '#22AA99CC', '#AAAA11CC', '#6633CCCC', '#E67300CC', '#8B0707CC', '#329262CC', '#5574A6CC', '#3B3EACCC'],
+          hoverBackgroundColor: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC'],
+          borderWidth: 1
+        }]
+      }
+    });
+    let ctx2 = document.getElementById("profitProjects");
+    this.profitProjects = new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: this.projectLabels,
+        datasets: [{
+          label: "Profit($)",
+          data: this.projectValues,
+          backgroundColor: ['#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC'],
+          hoverBackgroundColor: ['#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+
+    });
+    let ctx3 = document.getElementById("profitClients");
+    this.profitClients = new Chart(ctx3, {
+      type: 'horizontalBar',
+      data: {
+        labels: this.clientLabels,
+        datasets: [{
+          label: "# Resources",
+          data: this.clientValues,
+          backgroundColor: ['#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC'],
+          hoverBackgroundColor: ['#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true,
+              fixedStepSize: 1
+            }
+          }]
+        }
+      }
+
+    });
+    let ctx4 = document.getElementById("mandatesProgress");
+    this.mandatesProgress = new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: this.mandateLabels,
+        datasets: [{
+          label: "Expected duration (days)",
+          data: this.mandateValues1,
+          backgroundColor: ['#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC'],
+          hoverBackgroundColor: ['#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98'],
+          borderWidth: 1
+        },
+          {
+            label: "Actual duration (days)",
+            data: this.mandateValues2,
+            backgroundColor: ['#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC'],
+            hoverBackgroundColor: ['#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0'],
+            borderWidth: 1
+          }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+
+    });
+  }
 }
