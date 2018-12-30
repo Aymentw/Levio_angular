@@ -37,6 +37,8 @@ import {FolderComponent} from './Component/job-offer/application-back/folder/fol
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TableModule} from 'primeng/table';
+
 
 @NgModule({
   imports: [
@@ -59,8 +61,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatCheckboxModule,
     PdfViewerModule,
     FullCalendarModule,
+    FullCalendarModule,
     NgxPaginationModule,
-
+    TableModule
   ],
   declarations: [
     AdminHeaderComponent,

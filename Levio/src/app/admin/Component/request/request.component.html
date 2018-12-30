@@ -40,7 +40,7 @@
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" [disabled]="!request.status" (click)="deleteRequest(request)">
         <i class="material-icons">delete_forever</i>
       </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent msg-button">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent msg-button" data-toggle="modal" data-target="#sendModal" (click)="getMessageDetails(request)">
           <i class="material-icons">message</i>
         </button>
 
@@ -56,4 +56,39 @@
    </div>
  </div>
   <div *ngIf="listRequests.length <= 0" style="margin-left: 340px;margin-top: 100px;"><div class="mdl-spinner mdl-js-spinner is-active"></div></div>
+</div>
+
+
+<div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sendModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name" style="border-radius: 10px;">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Subject:</label>
+            <input type="text" class="form-control" id="subject" style="border-radius: 10px;">
+          </div>
+
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control msg-body" style="border-radius: 10px;" id="message-text" [(ngModel)]="msgBody" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary send-msg" (click)="sendMsg()">Send message</button>
+      </div>
+    </div>
+  </div>
 </div>
