@@ -1,3 +1,115 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+  <div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>{{numresmandate}}</h3>
+
+        <p>Resources in mandates</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+      <div class="inner">
+        <h3>{{numresintermandate}}</h3>
+
+        <p>Unoccupied Resources</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-4 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-blue">
+      <div class="inner">
+        <h3>{{numresadmin}}</h3>
+
+        <p>Admin Agents</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>65</h3>
+
+        <p>Number of Levio employees</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+      <div class="inner">
+        <h3>65</h3>
+
+        <p>Number of freelancers</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-user"></i>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <i class="fa fa-warning"></i>
+
+        <h3 class="box-title">Alerts</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="col-xs-6 col-md-3 text-center">
+          <input type="text" class="knob" value="80" data-skin="tron" data-thickness="0.2" data-width="90" data-height="90" data-fgColor="#3c8dbc" data-readonly="true">
+
+          <div class="knob-label">data-width="90"</div>
+        </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+
+</div>
+<table border="1px">
+  <tr *ngFor="let l of listSkills">
+    <td>{{l[0]}}</td>
+    <td>{{l[1]}}</td>
+  </tr>
+</table>
+<table border="1px">
+  <tr *ngFor="let l of mostProfitProject">
+    <td>{{l[0]}}</td>
+    <td>{{l[1]}}</td>
+  </tr>
+</table>
+<table border="1px">
+  <tr *ngFor="let l of mostProfitClient">
+    <td>{{l[0]}}</td>
+    <td>{{l[1]}}</td>
+  </tr>
+</table>
+{{numresmandate}}<br>
+{{numresintermandate}}<br>
+{{numresadmin}}<br>
+{{numreslevio}}
