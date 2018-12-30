@@ -47,5 +47,19 @@ export class RessourceService {
 
   }
 
+  public deleteLeave(id){
+
+    return this.http.delete('map-web/map/leave/delete/'+id);
+
+
+  }
+
+  public updateLeave(l){
+
+    return this.http.put('map-web/map/leave/',l);
+
+
+  }
+
 
 }

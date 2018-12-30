@@ -4,6 +4,9 @@ import {NgxSmartModalService} from 'ngx-smart-modal';
 import {Ressource} from '../../../models/Ressource';
 import {HttpClient} from '@angular/common/http';
 import {NotifierService} from 'angular-notifier';
+import * as jsPDF from "jspdf";
+import * as html2canvas from "html2canvas";
+
 
 @Component({
   selector: 'app-list-ressources',
@@ -60,9 +63,26 @@ export class ListRessourcesComponent implements OnInit {
     } );
     this.ListRessources.splice(this.ListRessources.indexOf(ressource), 1);
 
-
-
   }
 
+  public downloadPdf()
+  {
+    var data = document.getElementById('pdfpart');
+    html2canvas(data).then(canvas => {
+      // Few necessary setting options
+      var imgWidth = 150;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png');
+      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+      var position = 25;
+      pdf.text(40, 15, 'Ressources');
+      pdf.addImage(contentDataURL, 'PNG', 25, position, imgWidth, imgHeight);
+      pdf.save('MYPdf.pdf'); // Generated PDF
+
+    });
+  }
 
 }

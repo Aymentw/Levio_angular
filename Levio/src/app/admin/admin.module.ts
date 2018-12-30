@@ -58,9 +58,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatRadioModule,
     MatCheckboxModule,
     PdfViewerModule,
-    FullCalendarModule
-    NgxPaginationModule
-
+    FullCalendarModule,
+    NgxPaginationModule,
 
   ],
   declarations: [
