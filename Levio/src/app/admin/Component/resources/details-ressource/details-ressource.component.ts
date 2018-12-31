@@ -5,6 +5,7 @@ import {Ressource} from '../../../models/Ressource';
 import {CalendarComponent} from 'ng-fullcalendar';
 import {Options} from 'fullcalendar';
 import {NgxSmartModalService} from 'ngx-smart-modal';
+import {Leave} from '../../../models/Leave';
 
 @Component({
   selector: 'app-details-ressource',
@@ -78,32 +79,38 @@ export class DetailsRessourceComponent implements OnInit  {
 
   }
 
+  removeEvent(id,event) {
+    console.log(id);
+    this.ServiceRessource.deleteLeave(id).subscribe(data => console.log('ok'));
+    this.events.splice(this.events.indexOf(event), 1);
+    this.ServiceRessource.getEvents(this.id).subscribe(data => {
+      this.events = data;
+      console.log(data);
+    });
+    this.ngxSmartModalService.getModal('myModal').close()
 
-
-
-
+  }
 
 
   updateEvent(model: any) {
+
     model = {
-      event: {
-        id: model.event.id,
-        start: model.event.start,
-        end: model.event.end,
-        title: model.event.subject,
-        // other params
-      },
-      duration: {
-        _data: model.duration._data
-      }
+
+        id: model.id,
+        start: model.start,
+        end: model.end,
+
     }
     this.displayEvent = model;
+    this.ServiceRessource.updateLeave(model).subscribe(data => console.log('ok'));
+
   }
 
   updateRessource(ress) {
     this.ServiceRessource.updateRessource(ress.id,ress).subscribe(data => console.log('ok'));
 
   }
+
 }
 
 

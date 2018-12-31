@@ -61,6 +61,7 @@ import {ButtonModule} from 'primeng/button';
     MatCheckboxModule,
     PdfViewerModule,
     FullCalendarModule,
+    FullCalendarModule,
     NgxPaginationModule,
     TableModule,
     ButtonModule

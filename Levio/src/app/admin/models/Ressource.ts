@@ -1,3 +1,5 @@
+import {Project} from './Project';
+
 export class Ressource{
 
 
@@ -8,7 +10,8 @@ export class Ressource{
   contract_type:string;
   profile:string;
   sector:string;
-  note:string
+  note:string;
+  project:Project;
 
 
 
