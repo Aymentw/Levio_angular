@@ -38,6 +38,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TableModule} from 'primeng/table';
+import {NgCircleProgressModule} from 'ng-circle-progress';
 
 
 @NgModule({
@@ -63,7 +64,16 @@ import {TableModule} from 'primeng/table';
     FullCalendarModule,
     FullCalendarModule,
     NgxPaginationModule,
-    TableModule
+    TableModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    })
   ],
   declarations: [
     AdminHeaderComponent,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
 import 'jquery-knob';
 import {Chart} from 'chart.js';
+import {NgCircleProgressModule} from 'ng-circle-progress';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,6 +48,19 @@ export class DashboardComponent implements OnInit {
           this.skillslabels.push(x[0]);
           this.skillsvalues.push(x[1]);
         }
+        let ctx = document.getElementById('skills');
+        this.skills = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: this.skillslabels,
+            datasets: [{
+              data: this.skillsvalues,
+              backgroundColor: ['#3366CCCC', '#DC3912CC', '#FF9900CC', '#109618CC', '#990099CC', '#3B3EACCC', '#0099C6CC', '#DD4477CC', '#66AA00CC', '#B82E2ECC', '#316395CC', '#994499CC', '#22AA99CC', '#AAAA11CC', '#6633CCCC', '#E67300CC', '#8B0707CC', '#329262CC', '#5574A6CC', '#3B3EACCC'],
+              hoverBackgroundColor: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC'],
+              borderWidth: 1
+            }]
+          }
+        });
       });
     this.dashboardService.getMostProfitProject().subscribe(
       data => {
@@ -56,6 +70,30 @@ export class DashboardComponent implements OnInit {
           this.projectLabels.push(x[0]);
           this.projectValues.push(x[1]);
         }
+        let ctx2 = document.getElementById("profitProjects");
+        this.profitProjects = new Chart(ctx2, {
+          type: 'bar',
+          data: {
+            labels: this.projectLabels,
+            datasets: [{
+              label: "Profit($)",
+              data: this.projectValues,
+              backgroundColor: ['#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC'],
+              hoverBackgroundColor: ['#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC'],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+
+        });
       });
     this.dashboardService.getMostProfitClient().subscribe(
       data => {
@@ -65,6 +103,31 @@ export class DashboardComponent implements OnInit {
           this.clientLabels.push(x[0]);
           this.clientValues.push(x[1]);
         }
+        let ctx3 = document.getElementById("profitClients");
+        this.profitClients = new Chart(ctx3, {
+          type: 'horizontalBar',
+          data: {
+            labels: this.clientLabels,
+            datasets: [{
+              label: "# Resources",
+              data: this.clientValues,
+              backgroundColor: ['#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC'],
+              hoverBackgroundColor: ['#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912'],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              xAxes: [{
+                ticks: {
+                  beginAtZero: true,
+                  fixedStepSize: 1
+                }
+              }]
+            }
+          }
+
+        });
       });
     this.dashboardService.getNumResMandates().subscribe(
       data => {
@@ -123,108 +186,45 @@ export class DashboardComponent implements OnInit {
           this.mandateValues1.push(diffDays);
           this.mandateValues2.push(diffDays2);
         }
+        let ctx4 = document.getElementById("mandatesProgress");
+        this.mandatesProgress = new Chart(ctx4, {
+          type: 'bar',
+          data: {
+            labels: this.mandateLabels,
+            datasets: [{
+              label: "Expected duration (days)",
+              data: this.mandateValues1,
+              backgroundColor: ['#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC'],
+              hoverBackgroundColor: ['#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98'],
+              borderWidth: 1
+            },
+              {
+                label: "Actual duration (days)",
+                data: this.mandateValues2,
+                backgroundColor: ['#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC'],
+                hoverBackgroundColor: ['#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0'],
+                borderWidth: 1
+              }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+
+        });
       });
   }
 
   ngOnInit() {
 
-    $('.knob').knob({
-      lineCap: 'round'
-    });
-    let ctx = document.getElementById('skills');
-    console.log(this.skillslabels);
-    console.log(this.skillsvalues);
-    this.skills = new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: this.skillslabels,
-        datasets: [{
-          data: this.skillsvalues,
-          backgroundColor: ['#3366CCCC', '#DC3912CC', '#FF9900CC', '#109618CC', '#990099CC', '#3B3EACCC', '#0099C6CC', '#DD4477CC', '#66AA00CC', '#B82E2ECC', '#316395CC', '#994499CC', '#22AA99CC', '#AAAA11CC', '#6633CCCC', '#E67300CC', '#8B0707CC', '#329262CC', '#5574A6CC', '#3B3EACCC'],
-          hoverBackgroundColor: ['#3366CC', '#DC3912', '#FF9900', '#109618', '#990099', '#3B3EAC', '#0099C6', '#DD4477', '#66AA00', '#B82E2E', '#316395', '#994499', '#22AA99', '#AAAA11', '#6633CC', '#E67300', '#8B0707', '#329262', '#5574A6', '#3B3EAC'],
-          borderWidth: 1
-        }]
-      }
-    });
-    let ctx2 = document.getElementById("profitProjects");
-    this.profitProjects = new Chart(ctx2, {
-      type: 'bar',
-      data: {
-        labels: this.projectLabels,
-        datasets: [{
-          label: "Profit($)",
-          data: this.projectValues,
-          backgroundColor: ['#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC', '#3366CCCC'],
-          hoverBackgroundColor: ['#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC', '#3366CC'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
 
-    });
-    let ctx3 = document.getElementById("profitClients");
-    this.profitClients = new Chart(ctx3, {
-      type: 'horizontalBar',
-      data: {
-        labels: this.clientLabels,
-        datasets: [{
-          label: "# Resources",
-          data: this.clientValues,
-          backgroundColor: ['#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC', '#DC3912CC'],
-          hoverBackgroundColor: ['#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912', '#DC3912'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            ticks: {
-              beginAtZero: true,
-              fixedStepSize: 1
-            }
-          }]
-        }
-      }
 
-    });
-    let ctx4 = document.getElementById("mandatesProgress");
-    this.mandatesProgress = new Chart(ctx4, {
-      type: 'bar',
-      data: {
-        labels: this.mandateLabels,
-        datasets: [{
-          label: "Expected duration (days)",
-          data: this.mandateValues1,
-          backgroundColor: ['#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC', '#756d98CC'],
-          hoverBackgroundColor: ['#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98', '#756d98'],
-          borderWidth: 1
-        },
-          {
-            label: "Actual duration (days)",
-            data: this.mandateValues2,
-            backgroundColor: ['#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC', '#e4e8f0CC'],
-            hoverBackgroundColor: ['#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0', '#e4e8f0'],
-            borderWidth: 1
-          }]
-      },
-      options: {
-        scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
 
-    });
+
   }
 }
