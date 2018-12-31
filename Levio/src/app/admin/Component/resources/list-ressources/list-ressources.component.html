@@ -56,18 +56,18 @@
   <div class="box-body">
     <div class="form-group">
       <label for="InputFirstName">First name</label>
-      <input type="text" class="form-control" name="name" id="InputFirstName" [(ngModel)] = "ObjectRessource.first_name" placeholder="Enter email">
+      <input type="text" class="form-control" name="name" id="InputFirstName" [(ngModel)] = "ObjectRessource.first_name" placeholder="Enter first name">
     </div>
 
     <div class="form-group">
       <label for="InputLastName">Last name</label>
-      <input type="text" class="form-control" name="name" id="InputLastName" [(ngModel)] = "ObjectRessource.last_name" placeholder="Enter email">
+      <input type="text" class="form-control" name="name" id="InputLastName" [(ngModel)] = "ObjectRessource.last_name" placeholder="Enter last name">
     </div>
 
 
     <div class="form-group">
       <label for="InputProfile">Profile</label>
-      <input type="text" class="form-control" name="name" id="InputProfile" [(ngModel)] = "ObjectRessource.profile" placeholder="Enter email">
+      <input type="text" class="form-control" name="name" id="InputProfile" [(ngModel)] = "ObjectRessource.profile" placeholder="Enter profile">
     </div>
 
     <div class="form-group">
@@ -77,22 +77,26 @@
 
     <div class="form-group">
       <label for="InputSector">Sector</label>
-      <input type="text" class="form-control" name="name" id="InputSector" [(ngModel)] = "ObjectRessource.sector" placeholder="Enter email">
+      <input type="text" class="form-control" name="name" id="InputSector" [(ngModel)] = "ObjectRessource.sector" placeholder="Enter sector">
     </div>
 
     <div class="form-group">
       <label for="InputContract">Contract type</label>
-      <input type="text" class="form-control" name="name" id="InputContract" [(ngModel)] = "ObjectRessource.contract_type" placeholder="Enter email">
+      <select class="form-control select2" style="width: 100%;" name="name" id="InputContract" [(ngModel)] = "ObjectRessource.contract_type">
+        <option value="">Select an option</option>
+        <option value="employee">employee</option>
+        <option value="freelance">freelance</option>
+      </select>
     </div>
 
     <div class="form-group">
       <label for="InputNote">Note</label>
-      <input type="text" class="form-control" name="name" id="InputNote" [(ngModel)] = "ObjectRessource.note" placeholder="Enter email">
+      <input type="text" class="form-control" name="name" id="InputNote" [(ngModel)] = "ObjectRessource.note" placeholder="Enter note">
     </div>
 
     <div class="form-group">
       <label for="InputPhoto">Photo</label>
-      <input type="file" class="form-control" name="name" (change)="onFileSelected($event)" id="InputPhoto" #photo placeholder="Enter email">
+      <input type="file" class="form-control" name="name" (change)="onFileSelected($event)" id="InputPhoto" #photo placeholder="Enter photo">
     </div>
 
 
