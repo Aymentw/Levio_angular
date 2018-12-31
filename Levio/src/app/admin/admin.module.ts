@@ -38,6 +38,8 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+ 
 @NgModule({
   imports: [
     BrowserModule,
@@ -60,8 +62,8 @@ import {TableModule} from 'primeng/table';
     PdfViewerModule,
     FullCalendarModule,
     NgxPaginationModule,
-    TableModule
-
+    TableModule,
+    ButtonModule
 
   ],
   declarations: [
