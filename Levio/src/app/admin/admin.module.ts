@@ -39,8 +39,7 @@ import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TableModule} from 'primeng/table';
 import {NgCircleProgressModule} from 'ng-circle-progress';
-
-
+import {ButtonModule} from 'primeng/button';
 @NgModule({
   imports: [
     BrowserModule,
@@ -73,7 +72,8 @@ import {NgCircleProgressModule} from 'ng-circle-progress';
       outerStrokeColor: "#78C000",
       innerStrokeColor: "#C7E596",
       animationDuration: 300,
-    })
+    }),
+    ButtonModule
   ],
   declarations: [
     AdminHeaderComponent,
