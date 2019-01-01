@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
-import 'jquery-knob';
 import {Chart} from 'chart.js';
 import {NgCircleProgressModule} from 'ng-circle-progress';
 
@@ -11,6 +10,8 @@ import {NgCircleProgressModule} from 'ng-circle-progress';
   providers: [DashboardService]
 })
 export class DashboardComponent implements OnInit {
+  searchWord;
+  searchWord2;
   listSkills: Object;
   mostProfitProject: Object;
   mostProfitClient: Object;
@@ -24,27 +25,39 @@ export class DashboardComponent implements OnInit {
   satisfactionRate: Object;
   listresources: Object;
   listprojects: Object;
-  listmandates=[];
-  skillslabels=[];
-  skillsvalues=[];
-  skills= [];
-  profitProjects= [];
-  profitClients= [];
-  projectLabels=[];
-  projectValues=[];
-  clientLabels=[];
-  clientValues=[];
-  mandatesProgress=[];
-  mandateLabels=[];
-  mandateValues1=[];
-  mandateValues2=[];
-  constructor(private dashboardService: DashboardService) {
+  listmandates = [];
+  skillslabels = [];
+  skillsvalues = [];
+  skills = [];
+  profitProjects = [];
+  profitClients = [];
+  projectLabels = [];
+  projectValues = [];
+  clientLabels = [];
+  clientValues = [];
+  mandatesProgress = [];
+  mandateLabels = [];
+  mandateValues1 = [];
+  mandateValues2 = [];
+  profileFirstName;
+  profileLastName;
+  profileContractType;
+  profileState;
+  profileSateColor;
+  profileEffeciency;
+  profilePhoto;
+  profileId;
+  reportDone = false;
+  projectEff;
 
+  constructor(private dashboardService: DashboardService) {
+    this.searchWord = '';
+    this.searchWord2 = '';
     this.dashboardService.getSkills().subscribe(
       data => {
         this.listSkills = data;
         // @ts-ignore
-        for(let x of this.listSkills) {
+        for (let x of this.listSkills) {
           this.skillslabels.push(x[0]);
           this.skillsvalues.push(x[1]);
         }
@@ -66,7 +79,7 @@ export class DashboardComponent implements OnInit {
       data => {
         this.mostProfitProject = data;
         // @ts-ignore
-        for(let x of this.mostProfitProject) {
+        for (let x of this.mostProfitProject) {
           this.projectLabels.push(x[0]);
           this.projectValues.push(x[1]);
         }
@@ -99,7 +112,7 @@ export class DashboardComponent implements OnInit {
       data => {
         this.mostProfitClient = data;
         // @ts-ignore
-        for(let x of this.mostProfitClient) {
+        for (let x of this.mostProfitClient) {
           this.clientLabels.push(x[0]);
           this.clientValues.push(x[1]);
         }
@@ -221,10 +234,64 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
 
+  public showProfile(res) {
+    this.reportDone = false;
+    this.profileId = res.id;
+    this.profileFirstName = res.first_name;
+    this.profileLastName = res.last_name;
+    this.profileContractType = res.contract_type;
+    this.profilePhoto = res.photo;
+    if (res.state === 'available') {
+      this.profileSateColor = '#00a65a';
+      this.profileState = 'Available';
+    }
+    else if (res.state === 'notAvailable') {
+      this.profileSateColor = '#f56954';
+      this.profileState = 'Not Available';
+    }
+    else {
+      this.profileSateColor = '#f39c12';
+      this.profileState = 'Soon Available';
+    }
+    this.dashboardService.getResourceEff(res.id).subscribe(
+      data => {
+        if (typeof data === 'number') {
+          this.profileEffeciency = Math.round(data) + ' %';
+        }
+        else {
+          this.profileEffeciency = 'Not assigned';
+        }
+      }
+    );
+  }
 
+  public generateReport(id) {
+    this.dashboardService.getReport(id).subscribe();
+    this.reportDone = true;
+  }
 
+  public calculateEff(event, id) {
+    this.dashboardService.getProjectEff(id).subscribe(
+      data => {
+        if (typeof data === 'number') {
+          this.projectEff = Math.round(data);
+        }
+      }
+    );
+    if (typeof this.projectEff === 'undefined') {
+      event.currentTarget.parentElement.innerHTML = 'No mandates yet';
 
+    }
+    else {
+      if (this.projectEff >= 100)
+        event.currentTarget.parentElement.innerHTML = '<div style="color: #00a65a;">' + this.projectEff + ' % </div>';
+      else if (this.projectEff > 50 && this.projectEff < 100)
+        event.currentTarget.parentElement.innerHTML = '<div style="color: #f39c12">' + this.projectEff + ' % </div>';
+      else
+        event.currentTarget.parentElement.innerHTML = '<div style="color: #f56954">' + this.projectEff + ' % </div>';
+    }
 
   }
 }

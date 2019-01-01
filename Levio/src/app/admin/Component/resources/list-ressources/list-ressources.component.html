@@ -13,36 +13,47 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box" id="pdfpart">
+      <div class="box" >
         <div class="box-body">
-          <table  class="table table-bordered table-striped" id="example1">
-            <thead>
-            <tr>
-              <th>First name</th>
-              <th>Last name</th>
-              <th>Contract type</th>
-              <th>Profile</th>
-              <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let ressource of ListRessources">
-              <td>{{ressource.first_name}}</td>
-              <td>{{ressource.last_name}}</td>
-              <td>{{ressource.contract_type}}</td>
-              <td>{{ressource.profile}}</td>
-              <td><a [routerLink]=" ['../detailsressource',ressource.id]" routerLinkActive="active"><i class="fa fa-edit"></i></a>
-               &nbsp;&nbsp;&nbsp;&nbsp; <a (click)="deleteRessource(ressource.id,ressource)"><i class="fa fa-remove"></i></a>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+
+          <p-table #dt [columns]="cols" [value]="ress" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+              <div style="text-align: right">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th *ngFor="let col of columns">
+                  {{col.header}}
+                </th>
+              </tr>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns" let-ressource>
+              <tr [pSelectableRow]="rowData">
+                <td >
+                  {{ressource.first_name}}
+                </td>
+                <td >
+                  {{ressource.last_name}}
+                </td>
+                <td >
+                  {{ressource.contract_type}}
+                </td>
+                <td><a [routerLink]=" ['../detailsressource',ressource.id]" routerLinkActive="active"><i class="fa fa-edit"></i></a>
+                  &nbsp;&nbsp;&nbsp;&nbsp; <a (click)="deleteRessource(ressource.id,ressource)"><i class="fa fa-remove"></i></a>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
         </div>
 
       </div>
 
       <button class="btn btn-success glyphicon glyphicon-plus" (click)="ngxSmartModalService.getModal('myModal').open()"> </button>
-      <button (click)="downloadPdf()">Download PDF</button>
 
 
     </div>

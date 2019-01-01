@@ -3,7 +3,7 @@ import {RessourceService} from '../../../services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
 import {Ressource} from '../../../models/Ressource';
 import {CalendarComponent} from 'ng-fullcalendar';
-//import {Options} from 'fullcalendar';
+import {Options} from 'fullcalendar';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {Leave} from '../../../models/Leave';
 import {Skill} from '../../../models/Skill';
@@ -19,7 +19,10 @@ import * as html2canvas from "html2canvas";
   providers:[RessourceService]
 })
 export class DetailsRessourceComponent implements OnInit  {
+
   //calendarOptions: Options;
+  vacationUp:any;
+  calendarOptions: Options;
   displayEvent: any;
   events = null;
   SkillObject = new Skill();
@@ -49,7 +52,7 @@ export class DetailsRessourceComponent implements OnInit  {
       this.SkillsRess=data2;
       console.log(data2)});
 
-   /* this.calendarOptions = {
+    this.calendarOptions = {
       editable: true,
       contentHeight:500,
       eventLimit: false,
@@ -58,9 +61,11 @@ export class DetailsRessourceComponent implements OnInit  {
         center: 'title',
         right: 'month,agendaWeek,agendaDay,listMonth'
       },
-      events: []
+      events: [
+
+      ]
     };
-*/
+
       this.ServiceRessource.getEvents(this.id).subscribe(data => {
         this.events = data;
         console.log(data);
@@ -81,7 +86,7 @@ export class DetailsRessourceComponent implements OnInit  {
         start: model.event.start,
         end: model.event.end,
         title: model.event.title,
-        // other params
+      // other params
 
     }
     this.displayEvent = model;
@@ -109,14 +114,19 @@ export class DetailsRessourceComponent implements OnInit  {
   updateEvent(model: any) {
 
     model = {
+      event:{
+        id: model.event.id,
+        start: model.event.start,
+        end: model.event.end,
+      }
+    }
+    this.vacationUp = {
 
-        id: model.id,
-        start: model.start,
-        end: model.end,
+        start:model.event.start.format('YYYY-MM-DD HH:mm:ss'),
+        end:model.event.end.format('YYYY-MM-DD HH:mm:ss'),
 
     }
-    this.displayEvent = model;
-    this.ServiceRessource.updateLeave(model).subscribe(data => console.log('ok'));
+    this.ServiceRessource.updateLeave(this.vacationUp,model.event.id).subscribe(data => console.log(this.vacationUp));
 
   }
 
@@ -126,23 +136,23 @@ export class DetailsRessourceComponent implements OnInit  {
   }
 
 
+
   addSkill(SkillObject:Skill) {
 
-      if(SkillObject.name=='PHP'){
-        SkillObject.photo = '';
-
-      }
-      this.ServiceRessource.addSkill(this.id,SkillObject).subscribe(data => console.log('ok'));
-      this.notifier.show( {
+    if (SkillObject.name == 'PHP') {
+      SkillObject.photo = '';
+      this.ServiceRessource.addSkill(this.id, SkillObject).subscribe(data => console.log('ok'));
+      this.notifier.show({
         type: 'success',
         message: 'Skill successfully added',
         id: 'THAT_NOTIFICATION_ID'
-      } );
+      });
       this.SkillsRess.push(SkillObject);
 
+    }
   }
 
-  public downloadPdf()
+   downloadPdf()
   {
     var data = document.getElementById('pdfpart');
     html2canvas(data).then(canvas => {
@@ -162,7 +172,6 @@ export class DetailsRessourceComponent implements OnInit  {
 
     });
   }
-
 
   getColor(name) {
 

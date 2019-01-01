@@ -40,6 +40,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {TableModule} from 'primeng/table';
 import {NgCircleProgressModule} from 'ng-circle-progress';
 import {ButtonModule} from 'primeng/button';
+import { FilterTableResourcePipe } from './pipes/filter-table-resource.pipe';
 @NgModule({
   imports: [
     BrowserModule,
@@ -97,7 +98,8 @@ import {ButtonModule} from 'primeng/button';
     SupportComponent,
     ListRessourcesComponent,
     DetailsRessourceComponent,
-    FolderComponent
+    FolderComponent,
+    FilterTableResourcePipe
   ],
   exports: [AdminComponent]
 })
