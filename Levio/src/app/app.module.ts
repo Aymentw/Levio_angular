@@ -15,11 +15,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { routing } from './app-routing/app-routing.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import { AcceuilComponent } from './front/acceuil/acceuil.component';
+import { HeaderComponent } from './front/header/header.component';
+import { FooterComponent } from './front/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AcceuilComponent,
+    HeaderComponent,
+    FooterComponent,
 
   ],
   imports: [
