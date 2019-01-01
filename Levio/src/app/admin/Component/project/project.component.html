@@ -57,7 +57,7 @@
     <div class="box-header with-border">
       <h3 class="box-title">Create new project</h3>
     </div>
-    <form role="form" (ngSubmit)="addProject(project)">
+    <form role="form" (ngSubmit)="addProject(project,2)">
       <div class="box-body">
         <div class="form-group">
           <label>Project name</label>
@@ -179,7 +179,7 @@
       </div>
 
       <div class="box-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" (click)="updateModal.close()">Submit</button>
       </div>
     </form>
   </div>

@@ -20,8 +20,8 @@ export class ProjectService {
     return this.http.put<Project>('/map-web/map/project/delete/'+projectId , null);
   }
 
-  public addProject(p){
-    return this.http.post<Project>('/map-web/map/project/', p);
+  public addProject(p, id){
+    return this.http.post<Project>('/map-web/map/project/add/'+id, p);
   }
 
   public updateProject(p){
