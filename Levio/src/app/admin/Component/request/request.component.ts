@@ -7,6 +7,9 @@ import * as $ from 'jquery';
 import {interval} from 'rxjs/observable/interval';
 import { Subscription } from 'rxjs';
 import {Directive} from '@angular/core';
+import {Router} from '@angular/router';
+import {Message} from '../../models/Message';
+
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
@@ -17,8 +20,10 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
   subscription: Subscription;
   mySource:any =  interval(10000);
   listRequests: Request[] = [];
-  buldAction : boolean;
+  buldAction: boolean;
+  message: Message;
   constructor(private httpClient: HttpClient) {
+    this.message = new Message();
   }
 
   returnTreatAction(request: Request) {
@@ -32,6 +37,11 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
       this.httpClient.get('/map-web/map/User/treatClientRequest?requestId='+request.id).subscribe(data => data,err => console.log('err'));
     this.getAllRequests();
     }
+    }
+
+    sendMessage(message: Message) {
+    this.message.messageType = 'satisfaction';
+    this.httpClient.post('/map-web/ressource/sendMessageToClient',JSON.stringify(message)).subscribe();
     }
 
     deleteRequest(request: Request) {
@@ -64,6 +74,17 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
       }
     }
   }
+
+  sendMsg() {
+    this.sendMessage(this.message);
+  }
+
+  getMessageDetails(request: Request) {
+    this.message.toUserEmail = request.clients[0].email;
+    $('#recipient-name').val(this.message.reciepient);
+    this.message.subject = 'Request of resource for project:' + request.context;
+    $('#subject').val(this.message.subject);
+  }
   showClientProfile(request: Request) {
 
   }
@@ -80,11 +101,7 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
   ngAfterViewChecked() {
     $('.msg-button').css('background-color','orange');
     $('.profile-button').css('background-color','grey');
-    const check = $('.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect.mdl-data-table__select.mdl-js-ripple-effect--ignore-events.is-upgraded').attr('class').includes('is-checked');
-    if (check) {
-      this.buldAction = true;
 
-    }
   }
 
 }

@@ -35,8 +35,11 @@ import { DetailsRessourceComponent } from './Component/resources/details-ressour
 import {BrowserModule} from '@angular/platform-browser';
 import {FolderComponent} from './Component/job-offer/application-back/folder/folder.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
-
+import {TableModule} from 'primeng/table';
+import {NgCircleProgressModule} from 'ng-circle-progress';
+import {ButtonModule} from 'primeng/button';
 @NgModule({
   imports: [
     BrowserModule,
@@ -57,9 +60,20 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatRadioModule,
     MatCheckboxModule,
     PdfViewerModule,
-    NgxPaginationModule
-
-
+    FullCalendarModule,
+    FullCalendarModule,
+    NgxPaginationModule,
+    TableModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+    }),
+    ButtonModule
   ],
   declarations: [
     AdminHeaderComponent,
