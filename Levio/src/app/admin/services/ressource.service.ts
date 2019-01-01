@@ -4,7 +4,7 @@ import {Ressource} from '../models/Ressource';
 import {of} from 'rxjs/observable/of';
 import {Observable} from 'rxjs/Observable';
 import {Skill} from '../models/Skill';
-
+import {Leave} from '../models/Leave';
 
 @Injectable()
 export class RessourceService {
@@ -16,7 +16,7 @@ export class RessourceService {
 
   getRessources(){
 
-    return this.http.get<Ressource>('/map-web/map/ressource');
+    return this.http.get<Ressource[]>('/map-web/map/ressource');
 
   }
 
@@ -43,7 +43,7 @@ export class RessourceService {
 
   public getEvents(id) {
 
-    let data = this.http.get<Ressource>('map-web/map/leave/'+id);
+    let data = this.http.get<Leave>('map-web/map/leave/'+id);
     return (data);
 
   }
@@ -55,12 +55,14 @@ export class RessourceService {
 
   }
 
-  public updateLeave(l){
+  public updateLeave(l,id){
 
-    return this.http.put('map-web/map/leave/',l);
+    return this.http.put('map-web/map/leave/'+id,l);
 
 
   }
+
+
 
   public addSkill(id,s){
 
