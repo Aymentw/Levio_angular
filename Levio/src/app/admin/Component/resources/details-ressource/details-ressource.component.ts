@@ -3,7 +3,7 @@ import {RessourceService} from '../../../services/ressource.service';
 import {ActivatedRoute} from '@angular/router';
 import {Ressource} from '../../../models/Ressource';
 import {CalendarComponent} from 'ng-fullcalendar';
-import {Options} from 'fullcalendar';
+//import {Options} from 'fullcalendar';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {Leave} from '../../../models/Leave';
 import {Skill} from '../../../models/Skill';
@@ -19,7 +19,7 @@ import * as html2canvas from "html2canvas";
   providers:[RessourceService]
 })
 export class DetailsRessourceComponent implements OnInit  {
-  calendarOptions: Options;
+  //calendarOptions: Options;
   displayEvent: any;
   events = null;
   SkillObject = new Skill();
@@ -49,7 +49,7 @@ export class DetailsRessourceComponent implements OnInit  {
       this.SkillsRess=data2;
       console.log(data2)});
 
-    this.calendarOptions = {
+   /* this.calendarOptions = {
       editable: true,
       contentHeight:500,
       eventLimit: false,
@@ -60,7 +60,7 @@ export class DetailsRessourceComponent implements OnInit  {
       },
       events: []
     };
-
+*/
       this.ServiceRessource.getEvents(this.id).subscribe(data => {
         this.events = data;
         console.log(data);
