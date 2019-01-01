@@ -18,8 +18,8 @@ export class ClientService {
     return this.http.post<Client>('/map-web/map/client/', c);
   }
 
-  public deleteClient(projectId){
-    return this.http.put<Project>('/map-web/map/project/delete/'+projectId , null);
+  public deleteClient(id){
+    return this.http.put<Project>('/map-web/map/client/delete/'+id , null);
   }
 
 }

@@ -29,8 +29,8 @@ export class ProjectComponent implements OnInit {
   }
 
   project: Project = new Project();
-  addProject(p){
-    this.projectService.addProject(p).subscribe(data => console.log('ok'));
+  addProject(p, id){
+    this.projectService.addProject(p, id).subscribe(data => console.log('ok'));
     this.projectService.getAllProjects().subscribe(data => { this.projects=data});
   }
 

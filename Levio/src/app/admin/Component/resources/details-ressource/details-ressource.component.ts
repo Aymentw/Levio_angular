@@ -134,9 +134,11 @@ export class DetailsRessourceComponent implements OnInit  {
   }
 
 
-  addSkill(SkillObject) {
 
+  addSkill(SkillObject:Skill) {
 
+      if(SkillObject.name=='PHP'){
+        SkillObject.photo = '';
       this.ServiceRessource.addSkill(this.id,SkillObject).subscribe(data => console.log('ok'));
       this.notifier.show( {
         type: 'success',

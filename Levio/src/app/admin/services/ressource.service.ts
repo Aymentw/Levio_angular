@@ -6,7 +6,6 @@ import {Observable} from 'rxjs/Observable';
 import {Skill} from '../models/Skill';
 import {Leave} from '../models/Leave';
 
-
 @Injectable()
 export class RessourceService {
 
@@ -59,6 +58,28 @@ export class RessourceService {
   public updateLeave(l,id){
 
     return this.http.put('map-web/map/leave/'+id,l);
+
+
+  }
+
+  public addSkill(id,s){
+
+    return this.http.post<Skill>('/map-web/map/skill/'+id, s);
+
+
+  }
+
+  public getSkillsByRessource(id){
+
+    return this.http.get<Skill>('/map-web/map/skill/'+id);
+
+
+  }
+
+
+  public removeSkill(id){
+
+    return this.http.delete<Skill>('/map-web/map/skill/'+id);
 
 
   }
