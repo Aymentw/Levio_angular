@@ -62,27 +62,7 @@ export class RessourceService {
 
   }
 
-  public addSkill(id,s){
 
-    return this.http.post<Skill>('/map-web/map/skill/'+id, s);
-
-
-  }
-
-  public getSkillsByRessource(id){
-
-    return this.http.get<Skill>('/map-web/map/skill/'+id);
-
-
-  }
-
-
-  public removeSkill(id){
-
-    return this.http.delete<Skill>('/map-web/map/skill/'+id);
-
-
-  }
 
   public addSkill(id,s){
 

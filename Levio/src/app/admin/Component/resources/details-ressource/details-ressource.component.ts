@@ -137,19 +137,20 @@ export class DetailsRessourceComponent implements OnInit  {
 
   addSkill(SkillObject:Skill) {
 
-      if(SkillObject.name=='PHP'){
-        SkillObject.photo = '';
-      this.ServiceRessource.addSkill(this.id,SkillObject).subscribe(data => console.log('ok'));
-      this.notifier.show( {
+    if (SkillObject.name == 'PHP') {
+      SkillObject.photo = '';
+      this.ServiceRessource.addSkill(this.id, SkillObject).subscribe(data => console.log('ok'));
+      this.notifier.show({
         type: 'success',
         message: 'Skill successfully added',
         id: 'THAT_NOTIFICATION_ID'
-      } );
+      });
       this.SkillsRess.push(SkillObject);
 
+    }
   }
 
-  public downloadPdf()
+   downloadPdf()
   {
     var data = document.getElementById('pdfpart');
     html2canvas(data).then(canvas => {
@@ -169,7 +170,6 @@ export class DetailsRessourceComponent implements OnInit  {
 
     });
   }
-
 
   getColor(name) {
 
