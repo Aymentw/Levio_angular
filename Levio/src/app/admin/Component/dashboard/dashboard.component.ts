@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
-import 'jquery-knob';
 import {Chart} from 'chart.js';
 import {NgCircleProgressModule} from 'ng-circle-progress';
 
@@ -11,6 +10,7 @@ import {NgCircleProgressModule} from 'ng-circle-progress';
   providers: [DashboardService]
 })
 export class DashboardComponent implements OnInit {
+  searchWord;
   listSkills: Object;
   mostProfitProject: Object;
   mostProfitClient: Object;
@@ -38,8 +38,17 @@ export class DashboardComponent implements OnInit {
   mandateLabels=[];
   mandateValues1=[];
   mandateValues2=[];
+  profileFirstName;
+  profileLastName;
+  profileContractType;
+  profileState;
+  profileSateColor;
+  profileEffeciency;
+  profilePhoto;
+  profileId;
+  reportDone=false;
   constructor(private dashboardService: DashboardService) {
-
+    this.searchWord='';
     this.dashboardService.getSkills().subscribe(
       data => {
         this.listSkills = data;
@@ -220,11 +229,39 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-
-
-
-
-
+  ngOnInit() {  }
+  public showProfile(res) {
+    this.reportDone=false;
+    this.profileId=res.id;
+    this.profileFirstName=res.first_name;
+    this.profileLastName=res.last_name;
+    this.profileContractType=res.contract_type;
+    this.profilePhoto=res.photo;
+    if(res.state==='available') {
+    this.profileSateColor='#00a65a';
+    this.profileState='Available';
+    }
+    else if(res.state==='notAvailable') {
+      this.profileSateColor='#f56954';
+      this.profileState='Not Available';
+    }
+    else {
+      this.profileSateColor='#f39c12';
+      this.profileState='Soon Available';
+    }
+    this.dashboardService.getResourceEff(res.id).subscribe(
+      data=>{
+        if (typeof data === 'number') {
+          this.profileEffeciency = Math.round(data)+' %';
+        }
+        else{
+          this.profileEffeciency= 'Not assigned';
+        }
+      }
+    );
+  }
+  public generateReport(id){
+    this.dashboardService.getReport(id).subscribe();
+    this.reportDone=true;
   }
 }
