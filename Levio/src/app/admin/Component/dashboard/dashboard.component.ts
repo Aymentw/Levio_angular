@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
 import {Chart} from 'chart.js';
+import { NotifierService } from 'angular-notifier';
 import {NgCircleProgressModule} from 'ng-circle-progress';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-dashboard',
@@ -47,12 +49,43 @@ export class DashboardComponent implements OnInit {
   profileEffeciency;
   profilePhoto;
   profileId;
-  reportDone = false;
   projectEff;
+  listProfitPerMonth=[];
+  profitPerMonth=[];
+  private readonly notifier: NotifierService;
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService , notifierService: NotifierService) {
+    this.notifier = notifierService;
     this.searchWord = '';
     this.searchWord2 = '';
+    const calls = [];
+    for(let i=1;i<=12;i++){
+      calls.push(this.dashboardService.getProfitPerMonth(i));
+    }
+    Observable.forkJoin(calls).subscribe(response => {
+      console.log(response);
+      this.listProfitPerMonth=response;
+        let ctx5 = document.getElementById('profitPerMonth');
+        this.profitPerMonth=new Chart(ctx5, {
+          type: 'line',
+          data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+              data: this.listProfitPerMonth,
+              label: "Profit($)",
+              borderColor: "#3e95cd",
+              fill: "start"
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: 'Profit Per Month in Dollars'
+            }
+          }
+        });
+    });
+    console.log(this.listProfitPerMonth);
     this.dashboardService.getSkills().subscribe(
       data => {
         this.listSkills = data;
@@ -231,13 +264,13 @@ export class DashboardComponent implements OnInit {
 
         });
       });
+
   }
 
   ngOnInit() {
   }
 
   public showProfile(res) {
-    this.reportDone = false;
     this.profileId = res.id;
     this.profileFirstName = res.first_name;
     this.profileLastName = res.last_name;
@@ -269,7 +302,10 @@ export class DashboardComponent implements OnInit {
 
   public generateReport(id) {
     this.dashboardService.getReport(id).subscribe();
-    this.reportDone = true;
+    this.notifier.show( {
+      type: 'success',
+      message: 'Report generated succefully!',
+    } );
   }
 
   public calculateEff(event, id) {
