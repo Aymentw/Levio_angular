@@ -13,4 +13,5 @@ export class FilterTableResourcePipe implements PipeTransform {
     );
   }
 
+  
 }
