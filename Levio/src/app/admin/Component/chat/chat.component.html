@@ -5,7 +5,7 @@
   <ul class="messages">
     <li *ngFor="let message of messages" [ngClass]="message.user == fullName ? 'message left appeared' : 'message right appeared'">
       <div class="avatar">
-        <img class="avatar" src="../../../../assets/img/clients/med.jpg" style="border-radius: 100px; width: 60px; height: 60px;">
+        <img class="avatar" src="../../../../assets/img/clients/{{message.filteredName | lowercase}}.jpg" style="border-radius: 100px; width: 60px; height: 60px;">
       </div>
       <div class="text_wrapper">
         <div class="text"><b>{{message.user}}</b> {{message.message}}</div>
@@ -31,8 +31,4 @@
       </div>
     </div>
   </li>
-</div>
-
-<div ngForm="let user of listUsers">
-  {{user}}
 </div>

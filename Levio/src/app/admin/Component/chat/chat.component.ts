@@ -12,8 +12,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
   messages: any[] = [];
   fullName: string = localStorage.getItem('fname')+' '+localStorage.getItem('lname')+': ';
   currendDate: Date;
-  count = 0;
   listUsers: any[] = [];
+  filteredFullName = localStorage.getItem('fname')+' '+localStorage.getItem('lname');
   constructor(private chatService: ChatService) {
   }
 
@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
         $('input').val('');
 
     });
-    this.chatService.sendMessage({'user': this.fullName, 'message': this.message});
+    this.chatService.sendMessage({'user': this.fullName, 'message': this.message, 'filteredName': this.filteredFullName});
     this.message = '';
   }
 
@@ -35,7 +35,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
       .getMessages()
       .subscribe((message: any) => {
         this.messages.push(message);
-        this.count++;
       });
     this.chatService
       .newUser(this.fullName);

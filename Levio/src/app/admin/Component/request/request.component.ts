@@ -28,7 +28,7 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
   message: Message;
   currentProfile: Client;
   request: Request;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private rs: RequestService) {
     this.message = new Message();
     this.currentProfile = new Client();
     this.request = new Request();
@@ -40,23 +40,24 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
     }
     return 'check';
   }
+
   treatRequest(request: Request) {
     if (!request.status) {
-      this.httpClient.get('/map-web/map/User/treatClientRequest?requestId='+request.id).subscribe(data => data,err => console.log('err'));
+      this.rs.treatRequest(request);
     this.getAllRequests();
     }
-    }
+  }
 
     sendMessage(message: Message) {
     this.message.type = 'satisfaction';
     this.message.message = $('.msg-body').val().toString();
-    this.httpClient.post('/map-web/map/User/sendMsgToClient',message).subscribe();
+    this.rs.sendMessage(message);
     alertify.logPosition('bottom right').success('Your message have been sent successfully!');
     }
 
     deleteRequest(request: Request) {
     if (request.status) {
-      this.httpClient.get('/map-web/map/client/DeleteRequest?id='+request.id).subscribe(data => data,err => console.log('err'));
+      this.rs.deleteRequest(request);
       this.getAllRequests();
     }
     }
@@ -68,13 +69,10 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
     }
   }
   getAllRequests() {
-    return this.httpClient.get<Request[]>('/map-web/map/User/getAllRequests').subscribe(data => {
-          this.listRequests= data;
-    });
+    this.listRequests = this.rs.getAllRequests();
   }
   deleteTreatedRequests() {
-        this.httpClient.get('/map-web/map/User/deleteTreatedRequests').subscribe(data => data,err => console.log(err) );
-        this.getAllRequests();
+    this.getAllRequests();
     }
   treatAllRequests() {
     for (const request of this.listRequests) {
@@ -98,7 +96,7 @@ export class RequestComponent implements OnInit,AfterViewInit, AfterViewChecked 
     $('#subject').val(this.message.subject);
   }
   addRequest() {
-    this.httpClient.post('/map-web/map/client/AddRequest?clientId=2', this.request).subscribe();
+    this.rs.addRequest(this.request);
   }
   ngOnInit() {
     this.getAllRequests();

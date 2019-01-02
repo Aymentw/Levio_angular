@@ -84,7 +84,7 @@ this.service.addInterview(this.interviewadd, this.idApp).subscribe(res => res);
       //console.log('invalid');
     } else {
 this.interviewupdate.stateInterview = StateInterview.Request;
-      this.service.updateInterview(this.interviewupdate).subscribe(res => red);
+      this.service.updateInterview(this.interviewupdate).subscribe(res => res);
       this.ngxSmartModalService.getModal('update').close();
       this.notifier.show({
         type: 'success',

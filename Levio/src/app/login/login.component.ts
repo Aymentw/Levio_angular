@@ -34,7 +34,11 @@ export class LoginComponent implements OnInit, AfterViewInit, AfterViewChecked {
         localStorage.setItem('role', this.currentUser.role.toString());
         alertify.logPosition('bottom right').success('You have logged in successfully!');
         this.check = true;
+        if (localStorage.getItem('role').toString() != 'ROLE_CLIENT') {
         this.router.navigateByUrl('/admin');
+        } else {
+          this.router.navigateByUrl('/front');
+        }
       } else {
         alertify.logPosition('bottom right').error('Wrong credentials!');
       }
