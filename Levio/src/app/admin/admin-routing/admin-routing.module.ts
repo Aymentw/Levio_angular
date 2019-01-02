@@ -13,6 +13,7 @@ import {RequestComponent} from '../Component/request/request.component';
 import {ListRessourcesComponent} from '../Component/resources/list-ressources/list-ressources.component';
 import {DetailsRessourceComponent} from '../Component/resources/details-ressource/details-ressource.component';
 import {ApplicationBackComponent} from '../Component/job-offer/application-back/application-back.component';
+import {ChatComponent} from '../Component/chat/chat.component';
 
 
 @NgModule({
@@ -77,6 +78,10 @@ import {ApplicationBackComponent} from '../Component/job-offer/application-back/
           {
             path: 'request',
             component: RequestComponent
+          },
+          {
+            path: 'chat',
+            component: ChatComponent
           }
         ]
       }

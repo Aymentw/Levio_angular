@@ -8,6 +8,8 @@ export class Client {
   adress: string;
   type: clientType;
   category: clientCategory;
+  note: string;
+  
 }
 export enum clientType { newClient, currentClient, finishedProject }
 export enum clientCategory { privateCat, publicCat }

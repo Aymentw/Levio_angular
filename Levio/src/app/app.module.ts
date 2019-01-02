@@ -15,11 +15,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { routing } from './app-routing/app-routing.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
-
-
+import {ChatService} from './admin/services/chat.service';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -33,7 +34,7 @@ import {HttpClientModule} from '@angular/common/http';
 
  
   ],
-  providers: [],
+  providers: [ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

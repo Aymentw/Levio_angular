@@ -38,8 +38,9 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {FullCalendarModule} from 'ng-fullcalendar';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TableModule} from 'primeng/table';
-
-
+import { MessageComponent } from './Component/message/message.component';
+import {ChatService} from './services/chat.service';
+import { ChatComponent } from './Component/chat/chat.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -64,8 +65,6 @@ import {TableModule} from 'primeng/table';
     FullCalendarModule,
     NgxPaginationModule,
     TableModule
-
-
   ],
   declarations: [
     AdminHeaderComponent,
@@ -89,8 +88,11 @@ import {TableModule} from 'primeng/table';
     SupportComponent,
     ListRessourcesComponent,
     DetailsRessourceComponent,
-    FolderComponent
+    FolderComponent,
+    MessageComponent,
+    ChatComponent
   ],
+  providers: [ChatService],
   exports: [AdminComponent]
 })
 export class AdminModule { }

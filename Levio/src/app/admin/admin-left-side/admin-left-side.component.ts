@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-left-side.component.css']
 })
 export class AdminLeftSideComponent implements OnInit {
-
+  currentRole: string;
   constructor() { }
 
   ngOnInit() {
+    this.currentRole = localStorage.getItem('role');
   }
 
 }

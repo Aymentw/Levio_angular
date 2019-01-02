@@ -1,7 +1,7 @@
 export class Message {
-  messageType: string;
+  type: string;
   subject: string;
-  messageBody: string;
+  message: string;
   reciepient: string;
   toUserEmail: string;
 }
