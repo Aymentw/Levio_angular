@@ -12,7 +12,6 @@
       </a>
     </div>
     <h3 class="panel-title">List of Job Offers</h3>
-    <div class="panel-subtitle">Lorem ipsum dolor sit amet</div>
   </div>
   <div class="table-responsive">
     <table class="table table-hover">
@@ -104,7 +103,6 @@
       </span>
     </div>
     <h3 class="panel-title">List of applicants</h3>
-    <div class="panel-subtitle">Lorem ipsum dolor sit amet</div>
   </div>
   <div class="table-responsive">
     <table class="table table-hover">
@@ -150,7 +148,7 @@
         </td>
         <td>
           <div class="btn-group">
-            <a routerLink="application/{{a.id}}" type="button" class="btn btn-primary btn-pill m-w-120">Primary</a>
+            <a routerLink="application/{{a.id}}" type="button" class="btn btn-primary btn-pill m-w-120">Show details</a>
 
           </div>
         </td>
@@ -173,10 +171,6 @@
       <h3 class="m-y-0">Add a new Job Offer</h3>
     </div>
     <div class="panel-body">
-      <p class="text-muted m-b-15">Form validation can be enabled in markup via the data-api or via JavaScript. Automatically enable form validation by adding <code>data-toggle="validator"</code> to your form element. Features:
-        <u>validation via AJAX</u>,
-        <u>customizable error messages</u>,
-        <u>custom validator functions</u>.</p>
       <div class="row">
         <div class="col-sm-7 col-sm-offset-1 col-md-7 col-md-offset-3" style="margin-left: 20%">
           <form [formGroup]="registerForm" (ngSubmit)="AddJobOffer()" data-toggle="validator">
