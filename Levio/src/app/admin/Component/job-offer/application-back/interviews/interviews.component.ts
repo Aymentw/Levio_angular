@@ -34,14 +34,14 @@ interviews: Interview[] = [];
 
 
   ngOnInit() {
-    console.log(this.state);
+    //console.log(this.state);
     this.registerForm = this.formBuilder.group({
       date: ['', [Validators.required]],
     });
     this.registerForm1 = this.formBuilder.group({
       date: ['', [Validators.required]],
     });
-    console.log((this.interviews.length <= 2 || this.state === 'notApplay' || this.state === 'testTech'));
+  //  console.log((this.interviews.length <= 2 || this.state === 'notApplay' || this.state === 'testTech'));
   }
   get f1() { return this.registerForm1.controls; }
   get f() { return this.registerForm.controls; }
@@ -49,19 +49,19 @@ interviews: Interview[] = [];
   AddInterview() {
     this.submitted = true;
     if (this.registerForm.invalid) {
-      console.log('invalid');
+      //console.log('invalid');
     } else {
       this.interviewadd.stateInterview = StateInterview.Request;
       if (this.interviews.length === 0) {
         this.interviewadd.typeInterview = TypeInterview.interview;
-        this.appService.setStateApplication(this.idApp, 'interview').subscribe(res => console.log(res));
+        this.appService.setStateApplication(this.idApp, 'interview').subscribe(res => res);
       } else {
         this.interviewadd.typeInterview = TypeInterview.InterviewTech;
-        this.appService.setStateApplication(this.idApp, 'interviewTech').subscribe(res => console.log(res));
+        this.appService.setStateApplication(this.idApp, 'interviewTech').subscribe(res => res);
 
       }
 
-this.service.addInterview(this.interviewadd, this.idApp).subscribe(res => console.log('aaaa'));
+this.service.addInterview(this.interviewadd, this.idApp).subscribe(res => res);
       this.ngxSmartModalService.getModal('interview').close();
       this.notifier.show( {
         type: 'success',
@@ -81,10 +81,10 @@ this.service.addInterview(this.interviewadd, this.idApp).subscribe(res => consol
   updateInterview(i: Interview) {
     this.submitted = true;
     if (this.registerForm1.invalid) {
-      console.log('invalid');
+      //console.log('invalid');
     } else {
 this.interviewupdate.stateInterview = StateInterview.Request;
-      this.service.updateInterview(this.interviewupdate).subscribe(res => console.log(this.interviewupdate));
+      this.service.updateInterview(this.interviewupdate).subscribe(res => red);
       this.ngxSmartModalService.getModal('update').close();
       this.notifier.show({
         type: 'success',

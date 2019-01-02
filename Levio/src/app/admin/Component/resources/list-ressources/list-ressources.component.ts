@@ -4,6 +4,10 @@ import {NgxSmartModalService} from 'ngx-smart-modal';
 import {Ressource} from '../../../models/Ressource';
 import {HttpClient} from '@angular/common/http';
 import {NotifierService} from 'angular-notifier';
+import * as jsPDF from "jspdf";
+import * as html2canvas from "html2canvas";
+import {Mandat} from '../../../models/Mandat';
+declare var $: any;
 
 @Component({
   selector: 'app-list-ressources',
@@ -15,10 +19,12 @@ import {NotifierService} from 'angular-notifier';
 export class ListRessourcesComponent implements OnInit {
 
 
+  ress: Ressource[]=[];
+  cols: any[];
   selectedFile = null;
   ObjectRessource = new Ressource();
-  ListRessources: any;
   private readonly notifier: NotifierService;
+
   constructor(notifierService: NotifierService,private ServiceRessource:RessourceService,public ngxSmartModalService: NgxSmartModalService,private http:HttpClient) {
 
     this.notifier = notifierService;
@@ -28,9 +34,19 @@ export class ListRessourcesComponent implements OnInit {
 
   ngOnInit() {
 
+    this.cols = [
+      { field: 'first_name', header: 'First Name ' },
+      { field: 'last_name', header: 'Last Date' },
+      { field: 'contract_type', header: 'Contract Type' },
+      { field: '', header: 'Actions' }
+    ];
+
     this.ServiceRessource.getRessources().subscribe(data=> {
-      this.ListRessources=data;
-      console.log(data)});
+
+        this.ress=data;
+        console.log(data);
+
+ });
 
   }
 
@@ -42,7 +58,7 @@ export class ListRessourcesComponent implements OnInit {
       message: 'Ressource successfully added',
       id: 'THAT_NOTIFICATION_ID'
     } );
-    this.ListRessources.push(ObjectRessource);
+    this.ress.push(ObjectRessource);
 
 
 
@@ -58,9 +74,7 @@ export class ListRessourcesComponent implements OnInit {
       message: 'Ressource successfully deleted',
       id: 'THAT_NOTIFICATION_ID'
     } );
-    this.ListRessources.splice(this.ListRessources.indexOf(ressource), 1);
-
-
+    this.ress.splice(this.ress.indexOf(ressource), 1);
 
   }
 

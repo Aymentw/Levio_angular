@@ -41,6 +41,9 @@ import {TableModule} from 'primeng/table';
 import { MessageComponent } from './Component/message/message.component';
 import {ChatService} from './services/chat.service';
 import { ChatComponent } from './Component/chat/chat.component';
+import {NgCircleProgressModule} from 'ng-circle-progress';
+import {ButtonModule} from 'primeng/button';
+import { FilterTableResourcePipe } from './pipes/filter-table-resource.pipe';
 @NgModule({
   imports: [
     BrowserModule,
@@ -61,10 +64,20 @@ import { ChatComponent } from './Component/chat/chat.component';
     MatRadioModule,
     MatCheckboxModule,
     PdfViewerModule,
-    NgxPaginationModule,
+    FullCalendarModule,
     FullCalendarModule,
     NgxPaginationModule,
-    TableModule
+    TableModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: '#78C000',
+      innerStrokeColor: '#C7E596',
+      animationDuration: 300,
+    }),
+    ButtonModule
   ],
   declarations: [
     AdminHeaderComponent,
@@ -90,7 +103,8 @@ import { ChatComponent } from './Component/chat/chat.component';
     DetailsRessourceComponent,
     FolderComponent,
     MessageComponent,
-    ChatComponent
+    ChatComponent,
+    FilterTableResourcePipe
   ],
   providers: [ChatService],
   exports: [AdminComponent]

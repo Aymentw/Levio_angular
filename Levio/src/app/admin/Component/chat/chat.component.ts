@@ -45,7 +45,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
       .subscribe((users: any) => {
         this.listUsers = users;
       });
-    console.log(this.listUsers);
+    //console.log(this.listUsers);
 
   }
 

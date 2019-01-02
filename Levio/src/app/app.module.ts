@@ -17,11 +17,17 @@ import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {ChatService} from './admin/services/chat.service';
 import { LoginComponent } from './login/login.component';
+import { AcceuilComponent } from './front/acceuil/acceuil.component';
+import { HeaderComponent } from './front/header/header.component';
+import { FooterComponent } from './front/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-
+    AcceuilComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,8 +37,6 @@ import { LoginComponent } from './login/login.component';
     RouterModule,
     BrowserModule,
     HttpClientModule
-
- 
   ],
   providers: [ChatService],
   bootstrap: [AppComponent]

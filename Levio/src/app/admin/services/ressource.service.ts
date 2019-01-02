@@ -3,7 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Ressource} from '../models/Ressource';
 import {of} from 'rxjs/observable/of';
 import {Observable} from 'rxjs/Observable';
-
+import {Skill} from '../models/Skill';
+import {Leave} from '../models/Leave';
 
 @Injectable()
 export class RessourceService {
@@ -15,7 +16,7 @@ export class RessourceService {
 
   getRessources(){
 
-    return this.http.get<Ressource>('/map-web/map/ressource');
+    return this.http.get<Ressource[]>('/map-web/map/ressource');
 
   }
 
@@ -42,8 +43,46 @@ export class RessourceService {
 
   public getEvents(id) {
 
-    let data = this.http.get<Ressource>('map-web/map/leave/'+id);
+    let data = this.http.get<Leave>('map-web/map/leave/'+id);
     return (data);
+
+  }
+
+  public deleteLeave(id){
+
+    return this.http.delete('map-web/map/leave/delete/'+id);
+
+
+  }
+
+  public updateLeave(l,id){
+
+    return this.http.put('map-web/map/leave/'+id,l);
+
+
+  }
+
+
+
+  public addSkill(id,s){
+
+    return this.http.post<Skill>('/map-web/map/skill/'+id, s);
+
+
+  }
+
+  public getSkillsByRessource(id){
+
+    return this.http.get<Skill>('/map-web/map/skill/'+id);
+
+
+  }
+
+
+  public removeSkill(id){
+
+    return this.http.delete<Skill>('/map-web/map/skill/'+id);
+
 
   }
 

@@ -1,4 +1,7 @@
+<!-- notifier declare -->
+<notifier-container></notifier-container>
 
+<!-- LIST -->
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
@@ -32,7 +35,7 @@
                 <button type="button"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action
                   <span class="fa fa-caret-down"></span></button>
                 <ul class="dropdown-menu">
-                  <li><a><button class="btn btn-danger glyphicon glyphicon-trash" > delete</button></a></li>
+                  <li><a><button class="btn btn-danger glyphicon glyphicon-trash" (click)="deleteClient(c.id)"> delete</button></a></li>
                   <li class="divider"></li>
                 </ul>
               </div>

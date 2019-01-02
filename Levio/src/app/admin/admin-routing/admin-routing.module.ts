@@ -82,6 +82,8 @@ import {ChatComponent} from '../Component/chat/chat.component';
           {
             path: 'chat',
             component: ChatComponent
+          },
+          {path: 'ApplicationBack/:id', component: ApplicationBackComponent
           }
         ]
       }
